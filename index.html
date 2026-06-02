@@ -591,6 +591,7 @@
       height: 90px; display: flex; align-items: flex-end;
       padding: 0.75rem 1.1rem; position: relative; overflow: hidden;
     }
+    .map-banner-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; pointer-events: none; }
     .map-banner-name { font-size: 1.4rem; font-weight: 900; letter-spacing: 0.04em; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.7); position: relative; z-index: 1; }
     .map-banner-en   { font-size: 0.75rem; color: rgba(255,255,255,0.6); font-weight: 600; margin-top: 0.2rem; }
     .map-body { padding: 1rem 1.1rem; }
@@ -2802,7 +2803,7 @@ const maps = [
   {
     id: 3,
     name: 'オリンパス', nameEn: 'Olympus',
-    img: 'https://drop-assets.ea.com/images/1nbiZcYKD5exXWgecxZWNf/8af1c5a04b16e7c4e169dd421ada34ad/Apex_Maps-Olympus-1x1.jpg',
+    img: 'images/オリンパス.png',
     status: ['pubs'], size: '大', season: 'シーズン7',
     desc: '空中都市をテーマにした垂直方向の戦闘が多いマップ。フェーズランナーで素早く移動でき、エステートとハモンド研究所が主要激戦区。',
     hotZones: ['エステート','ハモンド研究所','ガーデン','ファイトナイト','益栽プラザ'],
@@ -3558,6 +3559,7 @@ function renderMaps(filter) {
       <div class="map-card" onclick="openMapModal(${m.id})" style="border-color:${m.color}44">
         <span class="map-card-click-hint">クリックで詳細</span>
         <div class="map-banner" style="background:${m.bg}">
+          ${m.img ? `<img class="map-banner-bg-img" src="${m.img}" alt="" onerror="this.style.display='none'">` : ''}
           <div>
             <div class="map-banner-name" style="color:${m.color};text-shadow:0 0 20px ${m.color}66">${m.name}</div>
             <div class="map-banner-en">${m.nameEn}</div>
