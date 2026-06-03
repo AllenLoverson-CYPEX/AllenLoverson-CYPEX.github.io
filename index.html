@@ -1791,12 +1791,46 @@
 
 const tournaments = [
   // ytChannelId: YouTubeチャンネルID（ライブ検知に使用）
-  { id:1, status:'live', tier:'Pro League', region:'APAC-N',
+  { id:1, status:'live',     tier:'Pro League',   region:'APAC-N',
     name:'ALGS Year 6 Split 1 Pro League - APAC North',
     start:'2026-04-04', end:'2026-06-07', prize:'¥17,600,000', teams:30,
     org:'ALGS', orgAbbr:'AL',
     ytChannelId:'UCsCvBHQucEbAyQPypuOCA_w',
     yt:'https://www.youtube.com/@esports_rage' },
+  { id:2, status:'upcoming', tier:'Playoffs',     region:'Global',
+    name:'ALGS Year 6 Split 1 Playoffs',
+    venue:'Esports World Cup（リヤド、サウジアラビア）',
+    start:'2026-07-07', end:'2026-07-11', prize:'¥320,000,000', teams:40,
+    org:'ALGS', orgAbbr:'AL',
+    ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA',
+    yt:'https://www.twitch.tv/playapex' },
+  { id:3, status:'upcoming', tier:'Pro League',   region:'APAC-N',
+    name:'ALGS Year 6 Split 2 Pro League - APAC North',
+    dateLabel:'日程未定（2026年8月下旬〜10月中旬予定）',
+    start:'2026-08-01', end:'2026-10-15', prize:'¥20,000,000', teams:30,
+    org:'ALGS', orgAbbr:'AL',
+    ytChannelId:'UCsCvBHQucEbAyQPypuOCA_w',
+    yt:'https://www.youtube.com/@esports_rage' },
+  { id:4, status:'upcoming', tier:'Playoffs',     region:'Global',
+    name:'ALGS Year 6 Split 2 Playoffs',
+    venue:'Orleans Arena（ラスベガス、米国）',
+    start:'2026-10-29', end:'2026-11-01', prize:'¥320,000,000', teams:40,
+    org:'ALGS', orgAbbr:'AL',
+    ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA',
+    yt:'https://www.twitch.tv/playapex' },
+  { id:5, status:'upcoming', tier:'Qualifier',    region:'Global',
+    name:'ALGS Year 6 Last Chance Qualifier',
+    start:'2026-11-20', end:'2026-11-22', prize:'未発表', teams:20,
+    org:'ALGS', orgAbbr:'AL',
+    ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA',
+    yt:'https://www.twitch.tv/playapex' },
+  { id:6, status:'upcoming', tier:'Championship', region:'Global',
+    name:'ALGS Year 6 Championship',
+    venue:'Daiwa House Premist Dome（札幌、日本）',
+    start:'2027-01-28', end:'2027-01-31', prize:'¥320,000,000以上', teams:40,
+    org:'ALGS', orgAbbr:'AL',
+    ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA',
+    yt:'https://www.twitch.tv/playapex' },
 ];
 
 // ════════════════════════════════════════════════════
@@ -1829,6 +1863,40 @@ const broadcastSchedule = {
     { date:'2026-05-31', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
     { date:'2026-06-07', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
     { date:'2026-06-07', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+  ],
+  // ALGS Year 6 Split 1 Playoffs（リヤド、EWC内）
+  2: [
+    { date:'2026-07-07', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-07-08', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-07-09', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-07-10', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-07-11', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+  ],
+  // ALGS Year 6 Split 2 Pro League - APAC North（日程未定）
+  3: [],
+  // ALGS Year 6 Split 2 Playoffs（ラスベガス）
+  4: [
+    { date:'2026-10-29', time:'10:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-10-30', time:'10:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-10-31', time:'10:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-11-01', time:'10:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+  ],
+  // ALGS Year 6 Last Chance Qualifier
+  5: [
+    { date:'2026-11-20', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-11-21', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+    { date:'2026-11-22', time:'19:00', ch:'Twitch', yt:'https://www.twitch.tv/playapex' },
+  ],
+  // ALGS Year 6 Championship（札幌）
+  6: [
+    { date:'2027-01-28', time:'13:00', ch:'Twitch',  yt:'https://www.twitch.tv/playapex' },
+    { date:'2027-01-28', time:'13:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2027-01-29', time:'13:00', ch:'Twitch',  yt:'https://www.twitch.tv/playapex' },
+    { date:'2027-01-29', time:'13:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2027-01-30', time:'13:00', ch:'Twitch',  yt:'https://www.twitch.tv/playapex' },
+    { date:'2027-01-30', time:'13:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2027-01-31', time:'13:00', ch:'Twitch',  yt:'https://www.twitch.tv/playapex' },
+    { date:'2027-01-31', time:'13:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
   ],
 };
 
@@ -3312,7 +3380,8 @@ function renderTournaments(filter) {
           </div>
           <h3 class="card-name">${t.name}</h3>
           <div class="card-meta">
-            <div class="meta-item"><span class="meta-label">日程</span><span class="meta-value">${formatDate(t.start,t.end)}</span></div>
+            <div class="meta-item"><span class="meta-label">日程</span><span class="meta-value">${t.dateLabel || formatDate(t.start,t.end)}</span></div>
+            ${t.venue ? `<div class="meta-item"><span class="meta-label">会場</span><span class="meta-value">${t.venue}</span></div>` : ''}
             <div class="meta-item"><span class="meta-label">賞金</span><span class="meta-value prize-value">${t.prize}</span></div>
             <div class="meta-item"><span class="meta-label">チーム数</span><span class="meta-value teams-value">${t.teams} チーム</span></div>
           </div>
