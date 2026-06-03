@@ -1108,8 +1108,9 @@
     .live-pulse { animation: pulse 1.8s ease-in-out infinite; }
 
     /* YouTubeボタン */
+    .footer-btns { margin-left:auto; display:flex; align-items:center; gap:0.4rem; flex-shrink:0; }
     .yt-btn {
-      margin-left: auto; display:inline-flex; align-items:center; gap:0.35rem;
+      display:inline-flex; align-items:center; gap:0.35rem;
       background:#ff0000; color:white; font-size:0.68rem; font-weight:700;
       padding:0.28rem 0.65rem; border-radius:5px; text-decoration:none;
       letter-spacing:0.03em; transition:all 0.2s; white-space:nowrap; flex-shrink:0;
@@ -3455,15 +3456,18 @@ function renderTournaments(filter) {
           ${bcastHtml}
         </div>
         <div class="card-footer">
-          ${es === 'ended'
-            ? `<a class="yt-btn past" href="${t.yt.replace(/\/$/, '')}/videos" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-            過去配信を見る
-          </a>`
-            : `<a class="yt-btn" href="${t.yt}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-            <svg width="14" height="10" viewBox="0 0 14 10"><path d="M13.7 1.56A1.76 1.76 0 0 0 12.46.3C11.37 0 7 0 7 0S2.63 0 1.54.3A1.76 1.76 0 0 0 .3 1.56C0 2.66 0 5 0 5s0 2.34.3 3.44A1.76 1.76 0 0 0 1.54 9.7C2.63 10 7 10 7 10s4.37 0 5.46-.3a1.76 1.76 0 0 0 1.24-1.26C14 7.34 14 5 14 5s0-2.34-.3-3.44zM5.6 7.14V2.86L9.24 5 5.6 7.14z" fill="currentColor"/></svg>
-            配信を見る
-          </a>`}
+          <div class="footer-btns">
+            ${es !== 'ended'
+              ? `<a class="yt-btn" href="${t.yt}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              <svg width="14" height="10" viewBox="0 0 14 10"><path d="M13.7 1.56A1.76 1.76 0 0 0 12.46.3C11.37 0 7 0 7 0S2.63 0 1.54.3A1.76 1.76 0 0 0 .3 1.56C0 2.66 0 5 0 5s0 2.34.3 3.44A1.76 1.76 0 0 0 1.54 9.7C2.63 10 7 10 7 10s4.37 0 5.46-.3a1.76 1.76 0 0 0 1.24-1.26C14 7.34 14 5 14 5s0-2.34-.3-3.44zM5.6 7.14V2.86L9.24 5 5.6 7.14z" fill="currentColor"/></svg>
+              配信を見る
+            </a>` : ''}
+            ${es !== 'upcoming'
+              ? `<a class="yt-btn past" href="${t.yt.replace(/\/$/, '')}/videos" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+              過去配信を見る
+            </a>` : ''}
+          </div>
         </div>
       </div>`;
   }).join('');
