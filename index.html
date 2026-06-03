@@ -385,12 +385,16 @@
     .bcast-cal-icon { flex-shrink: 0; opacity: 0.7; }
     .bcast-label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .bcast-link {
-      color: inherit; text-decoration: none; font-weight: 700;
-      border: 1px solid currentColor; border-radius: 3px;
-      padding: 0.08rem 0.42rem; font-size: 0.68rem; white-space: nowrap;
-      opacity: 0.85; flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      text-decoration: none; font-weight: 700; border-radius: 4px;
+      padding: 0.15rem 0.52rem; font-size: 0.68rem; white-space: nowrap;
+      flex-shrink: 0; cursor: pointer; color: #fff;
+      transition: transform 0.12s, box-shadow 0.15s, filter 0.15s;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.35);
     }
-    .bcast-link:hover { opacity: 1; background: rgba(255,255,255,0.07); }
+    .bcast-link:hover { transform: scale(1.07); filter: brightness(1.18); box-shadow: 0 3px 10px rgba(0,0,0,0.45); }
+    .bcast-link-yt     { background: #cc0000; }
+    .bcast-link-twitch { background: #9146ff; }
     .org-dot {
       width: 20px; height: 20px; border-radius: 50%;
       background: var(--accent-red);
@@ -494,15 +498,19 @@
     .cal-bcast-time { color: var(--accent-gold); font-weight: 700; flex-shrink: 0; min-width: 4.5rem; }
     .cal-bcast-ch   { color: var(--text-secondary); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .cal-bcast-yt {
-      display: inline-flex; align-items: center; gap: 0.25rem;
+      display: inline-flex; align-items: center; gap: 0.3rem;
       background: #cc0000; color: #fff; font-size: 0.65rem; font-weight: 700;
-      padding: 0.18rem 0.5rem; border-radius: 3px; text-decoration: none;
-      white-space: nowrap; flex-shrink: 0; transition: background 0.15s;
-      letter-spacing: 0.02em;
+      padding: 0.22rem 0.6rem; border-radius: 4px; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; letter-spacing: 0.02em; cursor: pointer;
+      transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.35);
     }
-    .cal-bcast-yt:hover { background: #ff0000; }
+    .cal-bcast-yt:hover {
+      background: #ff2020; transform: scale(1.07);
+      box-shadow: 0 3px 10px rgba(204,0,0,0.5);
+    }
     .cal-bcast-twitch { background: #9146ff; }
-    .cal-bcast-twitch:hover { background: #772ce8; }
+    .cal-bcast-twitch:hover { background: #a970ff; box-shadow: 0 3px 10px rgba(145,70,255,0.5); }
 
     /* 選手情報 */
     .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1rem; margin-bottom: 2rem; }
@@ -1992,9 +2000,12 @@ function renderBroadcastRow(info) {
   const { slot } = info;
   const todayStr = new Date().toISOString().slice(0, 10);
   const isToday = slot.date === todayStr;
-  const links = slot.channels.map(c =>
-    `<a class="bcast-link" href="${c.yt}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${c.ch}</a>`
-  ).join(' ');
+  const _ytIco = `<svg width="11" height="8" viewBox="0 0 11 8" fill="currentColor"><path d="M10.78.9A1.26 1.26 0 0 0 9.89.02C9.11 0 5.5 0 5.5 0S1.89 0 1.11.02A1.26 1.26 0 0 0 .22.9C0 1.68 0 4 0 4s0 2.32.22 3.1A1.26 1.26 0 0 0 1.11 8C1.89 8 5.5 8 5.5 8s3.61 0 4.39-.02A1.26 1.26 0 0 0 10.78 7.1C11 6.32 11 4 11 4S11 1.68 10.78.9zM4.4 5.7V2.3L7.7 4z"/></svg>`;
+  const _twIco = `<svg width="9" height="10" viewBox="0 0 9 10" fill="currentColor"><path d="M0 1.5L.75 0H9v6.5L7 8.5H5L3.5 10H2V8.5H0V1.5zM1 7.5H3v1.5l1.5-1.5H7l1.5-1.5V1H1v6.5zM5.5 2.5H6.5V5.5H5.5zm-2.5 0H4V5.5H3z"/></svg>`;
+  const links = slot.channels.map(c => {
+    const isYt = !c.yt.includes('twitch.tv');
+    return `<a class="bcast-link ${isYt ? 'bcast-link-yt' : 'bcast-link-twitch'}" href="${c.yt}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${isYt ? _ytIco : _twIco}${c.ch}</a>`;
+  }).join(' ');
 
   if (info.type === 'live') {
     return `<div class="bcast-row bcast-live">
@@ -3590,7 +3601,7 @@ function showCalDetail(dateStr){
             <div class="cal-bcast-row">
               <span class="cal-bcast-time">▶ ${b.time} JST</span>
               <span class="cal-bcast-ch" title="${b.videoTitle||b.ch}">${b.videoTitle ? b.videoTitle.slice(0,28)+(b.videoTitle.length>28?'…':'') : b.ch}</span>
-              <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}">${b.yt.includes('twitch.tv')?'Twitch':'YouTube'}</a>
+              <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}">${b.yt.includes('twitch.tv')?'<svg width="9" height="10" viewBox="0 0 9 10" fill="currentColor"><path d="M0 1.5L.75 0H9v6.5L7 8.5H5L3.5 10H2V8.5H0V1.5zM1 7.5H3v1.5l1.5-1.5H7l1.5-1.5V1H1v6.5zM5.5 2.5H6.5V5.5H5.5zm-2.5 0H4V5.5H3z"/></svg>Twitch':'<svg width="11" height="8" viewBox="0 0 11 8" fill="currentColor"><path d="M10.78.9A1.26 1.26 0 0 0 9.89.02C9.11 0 5.5 0 5.5 0S1.89 0 1.11.02A1.26 1.26 0 0 0 .22.9C0 1.68 0 4 0 4s0 2.32.22 3.1A1.26 1.26 0 0 0 1.11 8C1.89 8 5.5 8 5.5 8s3.61 0 4.39-.02A1.26 1.26 0 0 0 10.78 7.1C11 6.32 11 4 11 4S11 1.68 10.78.9zM4.4 5.7V2.3L7.7 4z"/></svg>YouTube'}</a>
             </div>`).join('')}
         </div>
       </div>`;
@@ -4504,7 +4515,7 @@ function renderStandaloneStreams() {
              <span class="yt-stream-time">${dateLabel}</span>`}
         <span class="yt-stream-title" title="${title}">${shortTitle}</span>
         <span class="yt-stream-ch">${b.wch ? b.wch.name : b.ch}</span>
-        <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}" onclick="event.stopPropagation()">${b.yt.includes('twitch.tv')?'Twitch':'YouTube'}</a>
+        <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}" onclick="event.stopPropagation()">${b.yt.includes('twitch.tv')?'<svg width="9" height="10" viewBox="0 0 9 10" fill="currentColor"><path d="M0 1.5L.75 0H9v6.5L7 8.5H5L3.5 10H2V8.5H0V1.5zM1 7.5H3v1.5l1.5-1.5H7l1.5-1.5V1H1v6.5zM5.5 2.5H6.5V5.5H5.5zm-2.5 0H4V5.5H3z"/></svg>Twitch':'<svg width="11" height="8" viewBox="0 0 11 8" fill="currentColor"><path d="M10.78.9A1.26 1.26 0 0 0 9.89.02C9.11 0 5.5 0 5.5 0S1.89 0 1.11.02A1.26 1.26 0 0 0 .22.9C0 1.68 0 4 0 4s0 2.32.22 3.1A1.26 1.26 0 0 0 1.11 8C1.89 8 5.5 8 5.5 8s3.61 0 4.39-.02A1.26 1.26 0 0 0 10.78 7.1C11 6.32 11 4 11 4S11 1.68 10.78.9zM4.4 5.7V2.3L7.7 4z"/></svg>YouTube'}</a>
       </div>`;
   }).join('');
 }
