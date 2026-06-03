@@ -308,6 +308,7 @@
     .tournament-card {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 2px;
       overflow: hidden; transition: all 0.2s; cursor: pointer;
+      display: flex; flex-direction: column;
     }
     .tournament-card:hover {
       border-color: var(--accent-red); background: var(--bg-card-hover);
@@ -317,7 +318,7 @@
     .card-top.live     { background: linear-gradient(90deg, var(--accent-green), #00ff9f); }
     .card-top.upcoming { background: linear-gradient(90deg, var(--accent-blue), #7b61ff); }
     .card-top.ended    { background: linear-gradient(90deg, var(--text-muted), #2d3748); }
-    .card-body { padding: 1.1rem 1.25rem; }
+    .card-body { padding: 1.1rem 1.25rem; flex: 1; }
     .card-status-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
     .status-pill { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; }
     .status-pill.live     { background: rgba(0,230,118,0.15); color: var(--accent-green); border: 1px solid rgba(0,230,118,0.4); }
