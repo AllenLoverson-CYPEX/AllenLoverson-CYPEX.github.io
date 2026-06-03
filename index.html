@@ -1399,6 +1399,95 @@
     @media (max-width: 640px) { .section-char-deco { display: none; } }
 
     /* ══════════════════════════════════════════════
+       ルール解説セクション
+    ══════════════════════════════════════════════ */
+    .rules-intro {
+      font-size: 0.85rem; color: var(--text-secondary);
+      margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .rules-block { margin-bottom: 1.75rem; }
+    .rules-block-title {
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent-red);
+      border-left: 3px solid var(--accent-red); padding-left: 0.6rem;
+      margin-bottom: 0.9rem;
+    }
+    .rules-point-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+    @media (max-width: 480px) { .rules-point-grid { grid-template-columns: 1fr; } }
+    .rules-point-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1rem 1.1rem; text-align: center;
+      border-top: 3px solid var(--accent-red);
+    }
+    .rules-point-card-icon { font-size: 1.6rem; margin-bottom: 0.3rem; }
+    .rules-point-card-name {
+      font-size: 0.78rem; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .rules-point-card-value {
+      font-size: 1.35rem; font-weight: 900; color: var(--accent-red);
+      margin-bottom: 0.2rem; letter-spacing: 0.03em;
+    }
+    .rules-point-card-desc { font-size: 0.72rem; color: var(--text-secondary); }
+
+    .rules-table-wrap { overflow-x: auto; }
+    .rules-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.8rem; min-width: 280px;
+    }
+    .rules-table th {
+      background: rgba(232,0,29,0.15); color: var(--accent-red);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      padding: 0.45rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border-accent);
+    }
+    .rules-table td {
+      padding: 0.4rem 0.75rem; border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .rules-table tr:last-child td { border-bottom: none; }
+    .rules-table .pt-rank { color: var(--text-secondary); font-size: 0.77rem; }
+    .rules-table .pt-val  { font-weight: 800; color: var(--accent-gold); }
+    .rules-table .pt-top  td { background: rgba(232,0,29,0.07); }
+
+    .rules-list {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .rules-list li {
+      padding: 0.55rem 0.8rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 4px;
+      font-size: 0.82rem; color: var(--text-primary); line-height: 1.55;
+      padding-left: 1.6rem; position: relative;
+    }
+    .rules-list li::before {
+      content: '▸'; color: var(--accent-red); position: absolute;
+      left: 0.6rem; font-size: 0.7rem; top: 0.65rem;
+    }
+    .rules-list li strong { color: var(--accent-gold); }
+
+    .rules-highlight {
+      background: rgba(232,0,29,0.08); border: 1px solid rgba(232,0,29,0.35);
+      border-radius: 6px; padding: 0.75rem 1rem;
+      font-size: 0.82rem; color: var(--text-primary); line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .rules-highlight strong { color: var(--accent-red); }
+
+    .rules-card-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+    @media (max-width: 600px) { .rules-card-grid { grid-template-columns: 1fr; } }
+
+    .rules-new-badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 800;
+      background: var(--accent-red); color: #fff;
+      padding: 0.1rem 0.35rem; border-radius: 3px;
+      letter-spacing: 0.06em; vertical-align: middle; margin-left: 0.4rem;
+    }
+
+    /* ══════════════════════════════════════════════
        フッターキャラ帯
     ══════════════════════════════════════════════ */
     .footer-legends {
@@ -1490,6 +1579,7 @@
       <button class="nav-btn" data-section="teams"       onclick="showSection('teams')">チーム情報</button>
       <button class="nav-btn" data-section="standings"   onclick="showSection('standings')">プロリーグ順位</button>
       <button class="nav-btn" data-section="maps"        onclick="showSection('maps')">マップ</button>
+      <button class="nav-btn" data-section="rules"       onclick="showSection('rules')">ルール解説</button>
     </nav>
     <!-- ハンバーガーボタン（モバイルのみ表示） -->
     <button class="hamburger-btn" id="hamburger-btn" onclick="toggleMobileNav()" aria-label="メニュー">
@@ -1507,6 +1597,7 @@
   <button class="nav-btn" data-section="teams"       onclick="showSection('teams')">チーム情報</button>
   <button class="nav-btn" data-section="standings"   onclick="showSection('standings')">プロリーグ順位</button>
   <button class="nav-btn" data-section="maps"        onclick="showSection('maps')">マップ</button>
+  <button class="nav-btn" data-section="rules"       onclick="showSection('rules')">ルール解説</button>
 </div>
 
 <!-- ════════ ヒーローバナー ════════ -->
@@ -1693,6 +1784,101 @@
         <div>⚠️ このページはiframeでの表示がブロックされています。</div>
         <a class="iframe-link" href="https://liquipedia.net/apexlegends/Portal:Players/APAC_North" target="_blank" rel="noopener">Liquipediaで開く ↗</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ルール解説 -->
+  <section id="section-rules" class="hidden" aria-label="ALGS大会ルール解説">
+    <div class="section-header">
+      <h2 class="section-title">大会ルール解説</h2>
+      <span class="badge">ALGS Y6</span>
+    </div>
+    <p class="rules-intro">ALGSプロリーグ・チャンピオンシップのポイント制度や大会形式を初心者にも分かりやすく解説します。</p>
+
+    <!-- 1. ポイント制の基本 -->
+    <div class="rules-block">
+      <div class="rules-block-title">1. ポイント制の基本</div>
+      <div class="rules-point-grid">
+        <div class="rules-point-card">
+          <div class="rules-point-card-icon">🎯</div>
+          <div class="rules-point-card-name">キルポイント</div>
+          <div class="rules-point-card-value">1キル = 1pt</div>
+          <div class="rules-point-card-desc">倒した敵1人につき1ポイント加算。キャップなし</div>
+        </div>
+        <div class="rules-point-card">
+          <div class="rules-point-card-icon">🏆</div>
+          <div class="rules-point-card-name">順位ポイント</div>
+          <div class="rules-point-card-value">最大 12pt</div>
+          <div class="rules-point-card-desc">試合終了時の生存順位に応じて加算（1位=12pt）</div>
+        </div>
+      </div>
+      <p style="font-size:0.76rem;color:var(--text-muted);margin-top:0.6rem;">
+        各試合の合計スコア = 順位ポイント + キルポイント
+      </p>
+    </div>
+
+    <!-- 2. 順位ポイント配分表 -->
+    <div class="rules-block">
+      <div class="rules-block-title">2. 順位ポイント配分表（1試合ごと）</div>
+      <div class="rules-table-wrap">
+        <table class="rules-table">
+          <thead>
+            <tr><th>順位</th><th>ポイント</th><th>順位</th><th>ポイント</th></tr>
+          </thead>
+          <tbody>
+            <tr class="pt-top"><td class="pt-rank">🥇 1位</td><td class="pt-val">12 pt</td><td class="pt-rank">🏅 7位</td><td class="pt-val">4 pt</td></tr>
+            <tr class="pt-top"><td class="pt-rank">🥈 2位</td><td class="pt-val">9 pt</td><td class="pt-rank">8〜10位</td><td class="pt-val">3 pt</td></tr>
+            <tr class="pt-top"><td class="pt-rank">🥉 3位</td><td class="pt-val">7 pt</td><td class="pt-rank">11〜15位</td><td class="pt-val">2 pt</td></tr>
+            <tr><td class="pt-rank">4〜6位</td><td class="pt-val">5 pt</td><td class="pt-rank">16〜20位</td><td class="pt-val">1 pt</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. プロリーグの仕組み -->
+    <div class="rules-block">
+      <div class="rules-block-title">3. プロリーグの仕組み</div>
+      <ul class="rules-list">
+        <li><strong>1マッチ（1日）= 6ゲーム</strong>。6試合の合計スコアでその日の順位が決まる</li>
+        <li>30チームを <strong>A・B・C の3グループ</strong> に分けてリーグ戦を実施</li>
+        <li>規定ラウンド終了後、<strong>累計ポイント上位20チーム</strong> がリージョンファイナルへ進出</li>
+        <li>順位ポイント・キルポイントは <strong>各シリーズ終了時にリセット</strong>（持ち越しなし）</li>
+      </ul>
+    </div>
+
+    <!-- 4. リージョンファイナル -->
+    <div class="rules-block">
+      <div class="rules-block-title">4. リージョンファイナル（マッチポイント形式）</div>
+      <div class="rules-highlight">
+        <strong>累計50ポイント到達 → マッチポイント獲得</strong><br>
+        マッチポイントを持った状態で <strong>チャンピオン（1位）</strong> を取ったチームが優勝！<br>
+        最終盤の大逆転が生まれやすい、白熱の決勝形式です。
+      </div>
+      <ul class="rules-list">
+        <li>累計50pt以上で「マッチポイント」資格を獲得。複数チームが同時保有することもある</li>
+        <li>最終5〜6試合目にかけて <strong>大逆転劇</strong> が起こりやすい緊張の展開</li>
+        <li>同点時の判定順：① シングルマッチ最高スコア　② 最高順位　③ 合計キル数</li>
+      </ul>
+    </div>
+
+    <!-- 5. Championship Points (CP) -->
+    <div class="rules-block">
+      <div class="rules-block-title">5. Championship Points（CP）</div>
+      <ul class="rules-list">
+        <li>プロリーグ最終順位に応じて <strong>CP（チャンピオンシップポイント）</strong> が付与される</li>
+        <li>CPは <strong>Split 1 + Split 2 の累積</strong> で計算される</li>
+        <li>シーズン終了時のCP上位チームが <strong>ALGS Championship（札幌）の出場権</strong> を獲得</li>
+        <li>Playoffs（プレーオフ）でもCPが獲得できる。世界大会への最重要指標</li>
+      </ul>
+    </div>
+
+    <!-- 6. Year 6の新ルール -->
+    <div class="rules-block">
+      <div class="rules-block-title">6. Year 6 の新ルール <span class="rules-new-badge">NEW</span></div>
+      <ul class="rules-list">
+        <li><strong>ロスター移籍ウィンドウ</strong>：選手の移籍・変更はマッチデー6後の公式ウィンドウ期間のみ可能</li>
+        <li><strong>最低出場要件</strong>：選手は1スプリットで <strong>最低12試合</strong> に参加しないと、そのチームのCPにカウントされない（ポイント持ち逃げ防止）</li>
+      </ul>
     </div>
   </section>
 
@@ -4113,7 +4299,7 @@ function filterTournaments(filter,btn){
   renderTournaments(filter);
 }
 
-const ALL_SECTIONS=['tournaments','calendar','players','teams','standings','maps'];
+const ALL_SECTIONS=['tournaments','calendar','players','teams','standings','maps','rules'];
 const IFRAME_URLS={
   players:'https://liquipedia.net/apexlegends/Portal:Players/APAC_North'
 };
