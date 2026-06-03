@@ -4151,7 +4151,10 @@ function saveYtStreamsCache() {
 
 // 大会のステータスを返す（日程ベース、変更なし）
 function getEffectiveStatus(t) {
-  return t.status;
+  const today = new Date().toISOString().slice(0, 10);
+  if (t.end < today)       return 'ended';
+  if (t.start <= today)    return 'live';
+  return 'upcoming';
 }
 
 // LIVEチェック対象リージョン（日本チームが出場する大会のみ）
