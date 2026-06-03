@@ -1655,9 +1655,9 @@
 
 
   <div class="stats-row" id="stats-row">
-    <div class="stat-card"><div class="stat-num" style="color:var(--accent-green)">3</div><div class="stat-label">開催中</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:var(--accent-blue)">5</div><div class="stat-label">近日開催</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:var(--text-muted)">6</div><div class="stat-label">終了済み</div></div>
+    <div class="stat-card"><div class="stat-num" id="stats-live"     style="color:var(--accent-green)">—</div><div class="stat-label">開催中</div></div>
+    <div class="stat-card"><div class="stat-num" id="stats-upcoming" style="color:var(--accent-blue)">—</div><div class="stat-label">近日開催</div></div>
+    <div class="stat-card"><div class="stat-num" id="stats-ended"    style="color:var(--text-muted)">—</div><div class="stat-label">終了済み</div></div>
     <div class="stat-card" style="display:none"><div class="stat-num" style="color:var(--accent-gold)">$2.85M</div><div class="stat-label">総賞金額</div></div>
   </div>
 
@@ -3687,7 +3687,16 @@ function formatDate(s, e) {
 //  大会カード
 // ════════════════════════════════════════════════════
 
+function renderStats() {
+  const counts = { live: 0, upcoming: 0, ended: 0 };
+  tournaments.forEach(t => { const s = getEffectiveStatus(t); if (counts[s] !== undefined) counts[s]++; });
+  document.getElementById('stats-live').textContent     = counts.live;
+  document.getElementById('stats-upcoming').textContent = counts.upcoming;
+  document.getElementById('stats-ended').textContent    = counts.ended;
+}
+
 function renderTournaments(filter) {
+  renderStats();
   const grid = document.getElementById('tournament-grid');
   const list = filter==='all' ? tournaments : tournaments.filter(t=>getEffectiveStatus(t)===filter);
   grid.innerHTML = list.map(t => {
