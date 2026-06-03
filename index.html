@@ -3629,6 +3629,16 @@ function showCalDetail(dateStr){
   document.getElementById('cal-detail').classList.remove('hidden');
 }
 
+function autoSelectNextBroadcast() {
+  const today = new Date().toISOString().slice(0, 10);
+  const bcastMap = buildBroadcastDateMap();
+  const nextDate = Object.keys(bcastMap).filter(d => d >= today).sort()[0];
+  if (!nextDate) return;
+  const [y, m] = nextDate.split('-').map(Number);
+  if (y !== calYear || m - 1 !== calMonth) renderCalendar(y, m - 1);
+  showCalDetail(nextDate);
+}
+
 // ════════════════════════════════════════════════════
 //  選手情報
 // ════════════════════════════════════════════════════
@@ -4030,6 +4040,7 @@ function showSection(name){
       iframe.src=IFRAME_URLS[name];
     }
   }
+  if (name === 'calendar') autoSelectNextBroadcast();
   // モバイルナビを閉じる
   closeMobileNav();
 }
