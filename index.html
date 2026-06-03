@@ -485,6 +485,15 @@
     .cal-detail { background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
     .cal-detail-title { font-size: 0.85rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
     .cal-event-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cal-month-day { margin-bottom: 0.9rem; }
+    .cal-month-day-header {
+      font-size: 0.78rem; font-weight: 700; color: var(--accent-gold);
+      padding: 0.2rem 0 0.35rem; margin-bottom: 0.3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-month-day.past .cal-month-day-header { color: var(--text-muted); }
+    .cal-month-day.today .cal-month-day-header { color: var(--accent-red); }
+    .cal-no-bcast { color: var(--text-secondary); font-size: 0.82rem; padding: 0.4rem 0; }
     .cal-event-item { padding: 0.55rem 0.75rem; background: var(--bg-secondary); border-radius: 2px; border-left: 3px solid transparent; }
     .cal-event-item.live     { border-color: var(--accent-green); }
     .cal-event-item.upcoming { border-color: var(--accent-blue); }
@@ -3567,7 +3576,7 @@ function renderCalendar(year, month) {
     const bcasts=bcastMap[dateStr]||[];
     const hasBcast=bcasts.length>0;
     const indicator=hasBcast?`<div class="cal-bcast-indicator">▶ ${bcasts.length}</div>`:'';
-    html+=`<div class="cal-day${isToday?' today':''}${hasBcast?' has-bcast':''}" id="calday-${dateStr}" ${hasBcast?`onclick="showCalDetail('${dateStr}')"`:''}>
+    html+=`<div class="cal-day${isToday?' today':''}${hasBcast?' has-bcast':''}" id="calday-${dateStr}">
       <span class="cal-day-num">${d}</span>${indicator}
     </div>`;
   }
@@ -3575,27 +3584,11 @@ function renderCalendar(year, month) {
   document.getElementById('cal-detail').classList.add('hidden');
 }
 
-function selectBestDayForMonth(year, month) {
-  const today = new Date().toISOString().slice(0, 10);
-  const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
-  const bcastMap = buildBroadcastDateMap();
-  const monthDates = Object.keys(bcastMap).filter(d => d.startsWith(prefix)).sort();
-  if (!monthDates.length) {
-    document.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
-    document.getElementById('cal-detail-title').textContent = 'この月に配信予定はありません';
-    document.getElementById('cal-event-list').innerHTML = '';
-    document.getElementById('cal-detail').classList.remove('hidden');
-    return;
-  }
-  const best = monthDates.find(d => d >= today) || monthDates[0];
-  showCalDetail(best);
-}
-
 function moveMonth(delta){
   let m=calMonth+delta, y=calYear;
   if(m>11){m=0;y++;} if(m<0){m=11;y--;}
   renderCalendar(y,m);
-  selectBestDayForMonth(y,m);
+  showMonthSchedule(y,m);
 }
 
 function showCalDetail(dateStr){
@@ -3646,14 +3639,78 @@ function showCalDetail(dateStr){
   document.getElementById('cal-detail').classList.remove('hidden');
 }
 
-function autoSelectNextBroadcast() {
+function showMonthSchedule(year, month) {
   const today = new Date().toISOString().slice(0, 10);
+  const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
   const bcastMap = buildBroadcastDateMap();
-  const nextDate = Object.keys(bcastMap).filter(d => d >= today).sort()[0];
-  if (!nextDate) return;
-  const [y, m] = nextDate.split('-').map(Number);
-  if (y !== calYear || m - 1 !== calMonth) renderCalendar(y, m - 1);
-  showCalDetail(nextDate);
+  const monthDates = Object.keys(bcastMap).filter(d => d.startsWith(prefix)).sort();
+  const dow = ['日','月','火','水','木','金','土'];
+
+  document.getElementById('cal-detail-title').textContent =
+    `${year}年${month + 1}月の配信スケジュール`;
+
+  if (!monthDates.length) {
+    document.getElementById('cal-event-list').innerHTML =
+      '<div class="cal-no-bcast">この月に配信予定はありません</div>';
+    document.getElementById('cal-detail').classList.remove('hidden');
+    return;
+  }
+
+  const ytIcon  = '<svg width="11" height="8" viewBox="0 0 11 8" fill="currentColor"><path d="M10.78.9A1.26 1.26 0 0 0 9.89.02C9.11 0 5.5 0 5.5 0S1.89 0 1.11.02A1.26 1.26 0 0 0 .22.9C0 1.68 0 4 0 4s0 2.32.22 3.1A1.26 1.26 0 0 0 1.11 8C1.89 8 5.5 8 5.5 8s3.61 0 4.39-.02A1.26 1.26 0 0 0 10.78 7.1C11 6.32 11 4 11 4S11 1.68 10.78.9zM4.4 5.7V2.3L7.7 4z"/></svg>YouTube';
+  const twIcon  = '<svg width="9" height="10" viewBox="0 0 9 10" fill="currentColor"><path d="M0 1.5L.75 0H9v6.5L7 8.5H5L3.5 10H2V8.5H0V1.5zM1 7.5H3v1.5l1.5-1.5H7l1.5-1.5V1H1v6.5zM5.5 2.5H6.5V5.5H5.5zm-2.5 0H4V5.5H3z"/></svg>Twitch';
+
+  const html = monthDates.map(dateStr => {
+    const [y, m, d] = dateStr.split('-');
+    const dayOfWeek = dow[new Date(dateStr + 'T12:00:00').getDay()];
+    const isPast  = dateStr < today;
+    const isToday = dateStr === today;
+    const dayBcasts = bcastMap[dateStr];
+
+    const byKey = {};
+    dayBcasts.forEach(b => {
+      const key = b.tournamentId !== null && b.tournamentId > 0
+        ? `t_${b.tournamentId}`
+        : `ch_${b.watchChannel ? b.watchChannel.id : b.ch}`;
+      if (!byKey[key]) byKey[key] = {tournament: b.tournament, watchChannel: b.watchChannel, bcasts: []};
+      byKey[key].bcasts.push(b);
+    });
+
+    const items = Object.values(byKey).map(g => {
+      const t  = g.tournament;
+      const wch = g.watchChannel;
+      const displayName = t ? t.name : (wch ? wch.name : (g.bcasts[0] && g.bcasts[0].ch) || '配信');
+      const statusCls   = t ? getEffectiveStatus(t) : 'upcoming';
+      const tierLine    = t
+        ? `<div class="cal-event-tier">${t.tier} · ${statusLabel(getEffectiveStatus(t))}</div>`
+        : (wch ? `<div class="cal-event-tier" style="color:var(--accent-blue)">自動取得 · ${wch.yt.replace('https://www.youtube.com/','')}</div>` : '');
+      const rows = g.bcasts.map(b => `
+            <div class="cal-bcast-row">
+              <span class="cal-bcast-time">▶ ${b.time} JST</span>
+              <span class="cal-bcast-ch" title="${b.videoTitle||b.ch}">${b.videoTitle ? b.videoTitle.slice(0,28)+(b.videoTitle.length>28?'…':'') : b.ch}</span>
+              <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}">${b.yt.includes('twitch.tv') ? twIcon : ytIcon}</a>
+            </div>`).join('');
+      return `
+        <div class="cal-event-item ${statusCls}">
+          <div class="cal-event-name">${displayName}</div>
+          ${tierLine}
+          <div class="cal-event-bcasts">${rows}
+          </div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="cal-month-day${isPast?' past':''}${isToday?' today':''}">
+        <div class="cal-month-day-header">${parseInt(m)}月${parseInt(d)}日（${dayOfWeek}）</div>
+        ${items}
+      </div>`;
+  }).join('');
+
+  document.getElementById('cal-event-list').innerHTML = html;
+  document.getElementById('cal-detail').classList.remove('hidden');
+}
+
+function autoSelectNextBroadcast() {
+  showMonthSchedule(calYear, calMonth);
 }
 
 // ════════════════════════════════════════════════════
