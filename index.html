@@ -3455,7 +3455,7 @@ function renderTournaments(filter) {
         <div class="card-footer">
           <a class="yt-btn" href="${t.yt}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
             <svg width="14" height="10" viewBox="0 0 14 10"><path d="M13.7 1.56A1.76 1.76 0 0 0 12.46.3C11.37 0 7 0 7 0S2.63 0 1.54.3A1.76 1.76 0 0 0 .3 1.56C0 2.66 0 5 0 5s0 2.34.3 3.44A1.76 1.76 0 0 0 1.54 9.7C2.63 10 7 10 7 10s4.37 0 5.46-.3a1.76 1.76 0 0 0 1.24-1.26C14 7.34 14 5 14 5s0-2.34-.3-3.44zM5.6 7.14V2.86L9.24 5 5.6 7.14z" fill="currentColor"/></svg>
-            配信を見る
+            ${es === 'ended' ? '過去配信を見る' : '配信を見る'}
           </a>
         </div>
       </div>`;
