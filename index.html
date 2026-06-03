@@ -3575,10 +3575,27 @@ function renderCalendar(year, month) {
   document.getElementById('cal-detail').classList.add('hidden');
 }
 
+function selectBestDayForMonth(year, month) {
+  const today = new Date().toISOString().slice(0, 10);
+  const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+  const bcastMap = buildBroadcastDateMap();
+  const monthDates = Object.keys(bcastMap).filter(d => d.startsWith(prefix)).sort();
+  if (!monthDates.length) {
+    document.querySelectorAll('.cal-day').forEach(el => el.classList.remove('selected'));
+    document.getElementById('cal-detail-title').textContent = 'この月に配信予定はありません';
+    document.getElementById('cal-event-list').innerHTML = '';
+    document.getElementById('cal-detail').classList.remove('hidden');
+    return;
+  }
+  const best = monthDates.find(d => d >= today) || monthDates[0];
+  showCalDetail(best);
+}
+
 function moveMonth(delta){
   let m=calMonth+delta, y=calYear;
   if(m>11){m=0;y++;} if(m<0){m=11;y--;}
   renderCalendar(y,m);
+  selectBestDayForMonth(y,m);
 }
 
 function showCalDetail(dateStr){
