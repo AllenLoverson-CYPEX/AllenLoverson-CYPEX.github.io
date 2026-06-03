@@ -3432,6 +3432,24 @@ function statusLabel(s) {
   return { live:'開催中', upcoming:'近日開催', ended:'終了済み' }[s];
 }
 
+function formatPrize(str) {
+  const m = str.match(/^¥([\d,]+)(.*)/);
+  if (!m) return str;
+  const yen = parseInt(m[1].replace(/,/g, ''), 10);
+  const suffix = m[2];
+  const oku = Math.floor(yen / 100000000);
+  const man = Math.floor((yen % 100000000) / 10000);
+  let result;
+  if (oku > 0 && man > 0) {
+    result = `${oku}億${man.toLocaleString()}万円`;
+  } else if (oku > 0) {
+    result = `${oku}億円`;
+  } else {
+    result = `${man.toLocaleString()}万円`;
+  }
+  return `約${result}${suffix}`;
+}
+
 function formatDate(s, e) {
   const fmt = d => { const [y,m,day]=d.split('-'); return `${y}.${m}.${day}`; };
   return s===e ? fmt(s) : `${fmt(s)} — ${fmt(e)}`;
@@ -3466,7 +3484,7 @@ function renderTournaments(filter) {
           <div class="card-meta">
             <div class="meta-item"><span class="meta-label">日程</span><span class="meta-value">${t.dateLabel || formatDate(t.start,t.end)}</span></div>
             ${t.venue ? `<div class="meta-item"><span class="meta-label">会場</span><span class="meta-value">${t.venue}</span></div>` : ''}
-            <div class="meta-item"><span class="meta-label">賞金</span><span class="meta-value prize-value">${t.prize}</span></div>
+            <div class="meta-item"><span class="meta-label">賞金</span><span class="meta-value prize-value">${formatPrize(t.prize)}</span></div>
             <div class="meta-item"><span class="meta-label">チーム数</span><span class="meta-value teams-value">${t.teams} チーム</span></div>
           </div>
           ${bcastHtml}
