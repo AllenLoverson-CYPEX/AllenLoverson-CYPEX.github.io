@@ -708,7 +708,42 @@
       border: 1px solid rgba(255,255,255,0.1);
       user-select: none;
     }
-    .map-bg-img { width: 100%; height: 320px; display: block; opacity: 0.88; object-fit: contain; object-position: center; }
+    .map-bg-img {
+      width: 100%; height: 320px; display: block; opacity: 0.88;
+      object-fit: contain; object-position: center;
+      cursor: zoom-in; transition: opacity 0.15s;
+    }
+    .map-bg-img:hover { opacity: 1; }
+    .map-img-zoom-hint {
+      position: absolute; bottom: 0.5rem; right: 0.5rem;
+      font-size: 0.68rem; background: rgba(0,0,0,0.72); color: rgba(255,255,255,0.85);
+      padding: 0.18rem 0.5rem; border-radius: 3px; pointer-events: none;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .map-img-wrap:hover .map-img-zoom-hint { opacity: 1; }
+    /* ライトボックス */
+    .img-lightbox {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(0,0,0,0.93);
+      display: flex; align-items: center; justify-content: center;
+      cursor: zoom-out; animation: lb-fadein 0.18s ease;
+    }
+    @keyframes lb-fadein { from { opacity:0 } to { opacity:1 } }
+    .img-lightbox.hidden { display: none; }
+    .img-lightbox-img {
+      max-width: 96vw; max-height: 90vh;
+      object-fit: contain; border-radius: 4px;
+      cursor: default; touch-action: pinch-zoom;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+    }
+    .img-lightbox-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%; width: 2.4rem; height: 2.4rem; font-size: 1.2rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .img-lightbox-close:hover { background: var(--accent-red); border-color: var(--accent-red); }
     .map-pin-layer { position: absolute; top:0; left:0; right:0; bottom:0; pointer-events: none; }
     .map-pin {
       position: absolute; transform: translate(-50%,-50%);
@@ -1883,6 +1918,12 @@
   </section>
 
 </main>
+
+<!-- ════ 画像ライトボックス ════ -->
+<div id="img-lightbox" class="img-lightbox hidden" onclick="closeLightbox()">
+  <button class="img-lightbox-close" onclick="event.stopPropagation();closeLightbox()" aria-label="閉じる">✕</button>
+  <img id="img-lightbox-img" class="img-lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
 
 <!-- ════ チームモーダル ════ -->
 <div id="team-modal" class="team-modal-overlay hidden" onclick="handleTeamModalBgClick(event)">
@@ -4047,7 +4088,9 @@ function openMapModal(mapId) {
   document.getElementById('modal-visual').innerHTML = `
     <div class="map-img-wrap">
       <img class="map-bg-img" src="${m.img}" alt="${m.name}"
-        onerror="this.style.display='none';this.parentNode.style.background='${m.bg}'">
+        onerror="this.style.display='none';this.parentNode.style.background='${m.bg}'"
+        onclick="openLightbox('${m.img}','${m.name}')">
+      <div class="map-img-zoom-hint">🔍 クリックで拡大</div>
     </div>`;
 
   // ════ ランドマーク一覧 ════
@@ -4190,7 +4233,21 @@ function handleModalBgClick(e) {
   if(e.target === document.getElementById('map-modal')) closeMapModal();
 }
 
-document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMapModal(); closeTeamModal(); }});
+function openLightbox(src, alt) {
+  const lb = document.getElementById('img-lightbox');
+  const img = document.getElementById('img-lightbox-img');
+  img.src = src; img.alt = alt || '';
+  lb.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  const lb = document.getElementById('img-lightbox');
+  lb.classList.add('hidden');
+  document.getElementById('img-lightbox-img').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMapModal(); closeTeamModal(); closeLightbox(); }});
 
 // ════════════════════════════════════════════════════
 //  チームモーダル
