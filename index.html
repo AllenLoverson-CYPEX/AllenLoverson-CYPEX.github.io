@@ -488,6 +488,8 @@
       letter-spacing: 0.02em;
     }
     .cal-bcast-yt:hover { background: #ff0000; }
+    .cal-bcast-twitch { background: #9146ff; }
+    .cal-bcast-twitch:hover { background: #772ce8; }
 
     /* 選手情報 */
     .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1rem; margin-bottom: 2rem; }
@@ -1789,21 +1791,12 @@
 
 const tournaments = [
   // ytChannelId: YouTubeチャンネルID（ライブ検知に使用）
-  // チャンネルIDの確認: https://www.streamweasels.com/tools/youtube-channel-id-and-user-id-convertor/
-  { id:1,  status:'live',     tier:'ALGS Premier', region:'Global', name:'ALGS 2026 Championship — Split 1',  start:'2026-05-15', end:'2026-05-25', prize:'¥77,500,000',  teams:40, org:'EA Sports', orgAbbr:'EA', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/results?search_query=ALGS+2026+Split+1+Championship' },
-  { id:2,  status:'live',     tier:'Pro League',   region:'NA',     name:'APEX Pro League NA — Week 8',        start:'2026-05-19', end:'2026-05-19', prize:'¥7,750,000',   teams:20, org:'ALGS',      orgAbbr:'AL', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/@PlayApexEsports' },
-  { id:3,  status:'live',     tier:'Regional',     region:'APAC',   name:'APEX JAPAN Cup Spring 2026',         start:'2026-05-18', end:'2026-05-20', prize:'¥5,000,000',   teams:24, org:'EA Japan',  orgAbbr:'EJ', ytChannelId:'', yt:'https://www.youtube.com/results?search_query=APEX+JAPAN+Cup+2026' },
-  { id:4,  status:'upcoming', tier:'ALGS Premier', region:'Global', name:'ALGS 2026 Championship — Split 2',   start:'2026-06-10', end:'2026-06-20', prize:'¥77,500,000',  teams:40, org:'EA Sports', orgAbbr:'EA', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/@PlayApexEsports' },
-  { id:5,  status:'upcoming', tier:'Invitational', region:'Global', name:'RedBull Campus Clutch 2026',          start:'2026-06-01', end:'2026-06-03', prize:'¥15,500,000', teams:16, org:'Red Bull',  orgAbbr:'RB', ytChannelId:'',                         yt:'https://www.youtube.com/results?search_query=RedBull+Campus+Clutch+Apex+2026' },
-  { id:6,  status:'upcoming', tier:'Pro League',   region:'EMEA',   name:'APEX Pro League EMEA — Week 9',      start:'2026-05-26', end:'2026-05-26', prize:'¥7,750,000',   teams:20, org:'ALGS',      orgAbbr:'AL', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/@PlayApexEsports' },
-  { id:7,  status:'upcoming', tier:'Regional',     region:'APAC',   name:'APEX KOREA Open 2026',               start:'2026-05-30', end:'2026-06-01', prize:'¥5,075,000',   teams:32, org:'ALGS APAC', orgAbbr:'AP', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/results?search_query=APEX+KOREA+Open+2026' },
-  { id:8,  status:'upcoming', tier:'Community',    region:'APAC',   name:'GameWith APEX Charity Cup',          start:'2026-05-24', end:'2026-05-24', prize:'¥1,550,000',   teams:12, org:'GameWith',  orgAbbr:'GW', ytChannelId:'',                         yt:'https://www.youtube.com/results?search_query=GameWith+APEX+Charity+Cup' },
-  { id:9,  status:'ended',    tier:'ALGS Premier', region:'Global', name:'ALGS 2025 Year-End Championship',    start:'2025-12-10', end:'2025-12-15', prize:'¥155,000,000', teams:40, org:'EA Sports', orgAbbr:'EA', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/results?search_query=ALGS+2025+Year-End+Championship' },
-  { id:10, status:'ended',    tier:'Pro League',   region:'NA',     name:'APEX Pro League NA — Week 7',        start:'2026-05-12', end:'2026-05-12', prize:'¥7,750,000',   teams:20, org:'ALGS',      orgAbbr:'AL', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/@PlayApexEsports' },
-  { id:11, status:'ended',    tier:'Invitational', region:'Global', name:'MSI APEX Invitational 2026',          start:'2026-04-20', end:'2026-04-22', prize:'¥11,625,000', teams:8,  org:'MSI',       orgAbbr:'MS', ytChannelId:'',                         yt:'https://www.youtube.com/results?search_query=MSI+APEX+Invitational+2026' },
-  { id:12, status:'ended',    tier:'Regional',     region:'LATAM',  name:'APEX LATAM Open Spring',             start:'2026-04-05', end:'2026-04-07', prize:'¥4,650,000',   teams:28, org:'ALGS',      orgAbbr:'AL', ytChannelId:'UC87gHNI4LrmVhke9IE7VDOA', yt:'https://www.youtube.com/results?search_query=APEX+LATAM+Open+Spring+2026' },
-  { id:13, status:'ended',    tier:'Community',    region:'NA',     name:'Twitch Rivals Apex 2026 S1',         start:'2026-03-15', end:'2026-03-15', prize:'¥3,875,000',   teams:12, org:'Twitch',    orgAbbr:'TW', ytChannelId:'',                         yt:'https://www.youtube.com/results?search_query=Twitch+Rivals+Apex+2026' },
-  { id:14, status:'ended',    tier:'Regional',     region:'APAC',   name:'APEX JAPAN Cup Winter 2025',         start:'2025-11-22', end:'2025-11-24', prize:'¥3,000,000',   teams:20, org:'EA Japan',  orgAbbr:'EJ', ytChannelId:'',                         yt:'https://www.youtube.com/results?search_query=APEX+JAPAN+Cup+Winter+2025' },
+  { id:1, status:'live', tier:'Pro League', region:'APAC-N',
+    name:'ALGS Year 6 Split 1 Pro League - APAC North',
+    start:'2026-04-04', end:'2026-06-07', prize:'¥17,600,000', teams:30,
+    org:'ALGS', orgAbbr:'AL',
+    ytChannelId:'UCsCvBHQucEbAyQPypuOCA_w',
+    yt:'https://www.youtube.com/@esports_rage' },
 ];
 
 // ════════════════════════════════════════════════════
@@ -1813,7 +1806,31 @@ const tournaments = [
 // ════════════════════════════════════════════════════
 // WATCH_CHANNELSの2チャンネル（@playapexesports / @esports_rage）の配信予定は
 // YouTube APIから自動取得するため静的エントリなし。取得確認後に再登録。
-const broadcastSchedule = {};
+const broadcastSchedule = {
+  // ALGS Year 6 Split 1 Pro League - APAC North（全10日間）
+  1: [
+    { date:'2026-04-04', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-04-04', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-04-05', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-04-05', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-04-12', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-04-12', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-04-19', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-04-19', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-04-26', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-04-26', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-05-03', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-05-03', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-05-23', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-05-23', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-05-24', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-05-24', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-05-31', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-05-31', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+    { date:'2026-06-07', time:'18:00', ch:'YouTube', yt:'https://www.youtube.com/@esports_rage' },
+    { date:'2026-06-07', time:'18:00', ch:'Twitch',  yt:'https://www.twitch.tv/esports_rage' },
+  ],
+};
 
 const JP_DAYS = ['日','月','火','水','木','金','土'];
 
@@ -3452,7 +3469,7 @@ function showCalDetail(dateStr){
             <div class="cal-bcast-row">
               <span class="cal-bcast-time">▶ ${b.time} JST</span>
               <span class="cal-bcast-ch" title="${b.videoTitle||b.ch}">${b.videoTitle ? b.videoTitle.slice(0,28)+(b.videoTitle.length>28?'…':'') : b.ch}</span>
-              <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt">YouTube</a>
+              <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}">${b.yt.includes('twitch.tv')?'Twitch':'YouTube'}</a>
             </div>`).join('')}
         </div>
       </div>`;
@@ -4006,7 +4023,7 @@ function getEffectiveStatus(t) {
 }
 
 // LIVEチェック対象リージョン（日本チームが出場する大会のみ）
-const YT_CHECK_REGIONS = ['APAC', 'Global'];
+const YT_CHECK_REGIONS = ['APAC', 'APAC-N', 'Global'];
 
 // チャンネルが現在YouTube配信中かどうか
 // ytLiveMap は WATCH_CHANNELS の2チャンネル分のみ格納されるため
@@ -4366,7 +4383,7 @@ function renderStandaloneStreams() {
              <span class="yt-stream-time">${dateLabel}</span>`}
         <span class="yt-stream-title" title="${title}">${shortTitle}</span>
         <span class="yt-stream-ch">${b.wch ? b.wch.name : b.ch}</span>
-        <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt" onclick="event.stopPropagation()">YouTube</a>
+        <a href="${b.yt}" target="_blank" rel="noopener" class="cal-bcast-yt${b.yt.includes('twitch.tv')?' cal-bcast-twitch':''}" onclick="event.stopPropagation()">${b.yt.includes('twitch.tv')?'Twitch':'YouTube'}</a>
       </div>`;
   }).join('');
 }
