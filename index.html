@@ -1451,6 +1451,21 @@
       transform: translateY(10%);
     }
     @media (max-width: 640px) { .section-char-deco { display: none; } }
+    .section-tagline {
+      flex: 1;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.02em;
+      padding-right: 0.5rem;
+    }
+    @media (max-width: 640px) {
+      .section-header { flex-wrap: wrap; }
+      .section-tagline { flex-basis: 100%; font-size: 0.66rem; padding-right: 0; }
+    }
 
     /* ══════════════════════════════════════════════
        ルール解説セクション
@@ -1727,11 +1742,6 @@
   <div class="hero-hex-ring hero-hex-ring-1"></div>
   <div class="hero-hex-ring hero-hex-ring-2"></div>
 
-  <!-- センターコンテンツ -->
-  <div class="hero-content">
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">ALGS（Apex Legends Global Series）の最新スケジュール・賞金・配信情報をお届けします。プロリーグ APAC Northの試合日程から、世界大会（リヤド・ラスベガス・札幌）まで、ALGSの全大会情報を一覧でご確認いただけます。</p>
-  </div>
 </div>
 
 <main>
@@ -1749,9 +1759,9 @@
     <div class="section-header">
       <h2 class="section-title">APEX LEGENDS 大会一覧</h2>
       <span class="badge live-pulse">LIVE 3件</span>
+      <p class="section-tagline">ALGS（Apex Legends Global Series）の最新スケジュール・賞金・配信情報をお届けします。プロリーグ APAC Northの試合日程から、世界大会（リヤド・ラスベガス・札幌）まで、ALGSの全大会情報を一覧でご確認いただけます。</p>
       <div class="section-char-deco">
-        <img src="https://media.contentapi.ea.com/content/dam/apex-legends/global/en-us/stories/character-art/apex-legends-character-bangalore.png"
-          onerror="this.parentElement.style.display='none'" alt="" loading="lazy">
+        <img src="https://media.contentapi.ea.com/content/dam/apex-legends/global/en-us/stories/character-art/apex-legends-character-bangalore.png" onerror="this.parentElement.style.display='none'" alt="" loading="lazy">
       </div>
     </div>
     <div class="filter-bar">
