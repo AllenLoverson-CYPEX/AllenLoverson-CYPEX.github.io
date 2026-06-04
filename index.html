@@ -1560,16 +1560,53 @@
     .footer-cypex-logo {
       padding: 2rem 1rem 1.5rem;
       text-align: center;
+      animation: coypex-fadein 0.9s ease-out both;
     }
     .footer-cypex-logo svg {
       max-width: 600px; width: 100%; height: auto;
       display: block; margin: 0 auto;
+      animation: coypex-glitch 6s linear 4s infinite;
     }
     .footer-cypex-link {
       display: block; cursor: pointer;
+      position: relative; overflow: hidden;
       transition: filter 0.25s, opacity 0.25s;
     }
     .footer-cypex-link:hover { filter: brightness(1.25); opacity: 0.9; }
+    .footer-cypex-link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, transparent 5%, #e60012 35%, #ff4455 50%, #e60012 65%, transparent 95%);
+      box-shadow: 0 0 10px 3px rgba(230,0,18,0.5);
+      top: -5%;
+      animation: coypex-scan 8s linear 6s infinite;
+      pointer-events: none;
+    }
+    @keyframes coypex-fadein {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes coypex-glitch {
+      0%, 94%  { transform: translate(0, 0); clip-path: none; }
+      95%      { transform: translate(-6px, 0); clip-path: inset(15% 0 60% 0); }
+      96.5%    { transform: translate(5px, 1px); clip-path: inset(55% 0 20% 0); }
+      98%      { transform: translate(-2px, -1px); clip-path: inset(28% 0 48% 0); }
+      99%      { transform: translate(0, 0); clip-path: none; }
+      100%     { transform: translate(0, 0); clip-path: none; }
+    }
+    @keyframes coypex-scan {
+      0%   { top: -5%; opacity: 0; }
+      3%   { opacity: 1; }
+      97%  { opacity: 1; }
+      100% { top: 105%; opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .footer-cypex-logo { animation: none; }
+      .footer-cypex-logo svg { animation: none; }
+      .footer-cypex-link::after { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1939,10 +1976,10 @@
 
   <div class="footer-cypex-logo">
     <a href="https://www.youtube.com/@AllenLoverson" target="_blank" rel="noopener noreferrer" class="footer-cypex-link">
-    <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;width:100%;height:auto;display:block;margin:0 auto;">
       <defs>
-        <clipPath id="cypex-text-clip">
-          <text x="340" y="215" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="160" font-weight="900" letter-spacing="0.02em">CYPEX</text>
+        <clipPath id="coypex-lc-clip">
+          <text x="340" y="215" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="130" font-weight="900" letter-spacing="0.01em">CoYPEX</text>
         </clipPath>
       </defs>
       <rect x="60" y="50" width="560" height="3" fill="#e60012"/>
@@ -1950,27 +1987,27 @@
       <polygon points="60,50 90,50 90,53 63,53 63,80 60,80" fill="#e60012"/>
       <polygon points="620,50 590,50 590,53 617,53 617,80 620,80" fill="#e60012"/>
       <polygon points="60,330 90,330 90,327 63,327 63,300 60,300" fill="#e60012"/>
-      <polygon points="620,330 590,330 590,327 617,327 617,300 620,330" fill="#e60012"/>
-      <text x="346" y="221" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="160" font-weight="900" fill="#e60012" letter-spacing="0.02em" opacity="0.5">CYPEX</text>
-      <text x="340" y="215" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="160" font-weight="900" fill="#fff" letter-spacing="0.02em">CYPEX</text>
-      <g clip-path="url(#cypex-text-clip)">
-        <rect x="150" y="100" width="5" height="50" transform="rotate(-18 152 125)" fill="#050505"/>
-        <rect x="178" y="160" width="5" height="50" transform="rotate(-18 180 185)" fill="#050505"/>
-        <rect x="245" y="110" width="5" height="55" transform="rotate(-18 247 135)" fill="#050505"/>
-        <rect x="278" y="170" width="5" height="40" transform="rotate(-18 280 190)" fill="#050505"/>
-        <rect x="345" y="105" width="5" height="60" transform="rotate(-18 347 135)" fill="#050505"/>
-        <rect x="380" y="170" width="5" height="40" transform="rotate(-18 382 190)" fill="#050505"/>
-        <rect x="445" y="115" width="5" height="50" transform="rotate(-18 447 140)" fill="#050505"/>
-        <rect x="478" y="170" width="5" height="40" transform="rotate(-18 480 190)" fill="#050505"/>
-        <rect x="535" y="105" width="5" height="60" transform="rotate(-18 537 135)" fill="#050505"/>
-        <rect x="570" y="170" width="5" height="40" transform="rotate(-18 572 190)" fill="#050505"/>
-        <polygon points="80,210 600,210 600,225 110,250 80,250" fill="#050505"/>
+      <polygon points="620,330 590,330 590,327 617,327 617,300 620,300" fill="#e60012"/>
+      <text x="345" y="220" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="130" font-weight="900" fill="#e60012" letter-spacing="0.01em" opacity="0.5">CoYPEX</text>
+      <text x="340" y="215" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="130" font-weight="900" fill="#fff" letter-spacing="0.01em">CoYPEX</text>
+      <g clip-path="url(#coypex-lc-clip)">
+        <rect x="125" y="120" width="4" height="45" transform="rotate(-18 127 142)" fill="#050505"/>
+        <rect x="153" y="160" width="4" height="40" transform="rotate(-18 155 180)" fill="#050505"/>
+        <rect x="225" y="150" width="4" height="40" transform="rotate(-18 227 170)" fill="#050505"/>
+        <rect x="305" y="120" width="4" height="50" transform="rotate(-18 307 145)" fill="#050505"/>
+        <rect x="340" y="165" width="4" height="35" transform="rotate(-18 342 182)" fill="#050505"/>
+        <rect x="400" y="125" width="4" height="45" transform="rotate(-18 402 147)" fill="#050505"/>
+        <rect x="435" y="165" width="4" height="35" transform="rotate(-18 437 182)" fill="#050505"/>
+        <rect x="495" y="120" width="4" height="50" transform="rotate(-18 497 145)" fill="#050505"/>
+        <rect x="530" y="165" width="4" height="35" transform="rotate(-18 532 182)" fill="#050505"/>
+        <rect x="560" y="125" width="4" height="50" transform="rotate(-18 562 150)" fill="#050505"/>
+        <polygon points="90,210 595,210 595,222 115,245 90,245" fill="#050505"/>
       </g>
-      <line x1="100" y1="255" x2="580" y2="255" stroke="#e60012" stroke-width="1.5"/>
-      <line x1="120" y1="280" x2="195" y2="280" stroke="#e60012" stroke-width="2"/>
-      <text x="340" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" letter-spacing="0.55em">APEX LEGENDS ESPORTS</text>
-      <line x1="485" y1="280" x2="560" y2="280" stroke="#e60012" stroke-width="2"/>
-      <polygon points="335,305 345,305 340,313" fill="#e60012"/>
+      <line x1="100" y1="252" x2="580" y2="252" stroke="#e60012" stroke-width="1.5"/>
+      <line x1="120" y1="278" x2="195" y2="278" stroke="#e60012" stroke-width="2"/>
+      <text x="340" y="283" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#fff" letter-spacing="0.55em">APEX LEGENDS ESPORTS</text>
+      <line x1="485" y1="278" x2="560" y2="278" stroke="#e60012" stroke-width="2"/>
+      <polygon points="335,303 345,303 340,311" fill="#e60012"/>
     </svg>
     </a>
   </div>
