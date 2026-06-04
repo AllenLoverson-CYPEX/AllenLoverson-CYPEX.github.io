@@ -195,13 +195,16 @@
       z-index: 1;
     }
 
-    .header-site-badge {
-      font-size: 0.68rem; font-weight: 800;
-      letter-spacing: 0.28em; color: #ffffff; text-transform: uppercase;
-      background: var(--accent-red);
-      padding: 0.25rem 1rem; border-radius: 2px;
-      white-space: nowrap; flex-shrink: 0;
-      animation: chipGlow 2.8s ease-in-out infinite;
+    .header-logo {
+      flex-shrink: 0;
+      width: 250px;
+      display: block;
+      line-height: 0;
+    }
+    .header-logo svg {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .logo {
@@ -1084,7 +1087,7 @@
       /* ── ヘッダー ── */
       .header-inner { height: 56px; gap: 0.5rem; padding: 0 0.75rem; }
       .logo-text { font-size: 0.88rem; }
-      .header-site-badge { font-size: 0.6rem; letter-spacing: 0.12em; padding: 0.22rem 0.7rem; }
+      .header-logo { width: 175px; }
 
       /* ── main ── */
       main { padding: 1rem 0.75rem 3rem; }
@@ -1157,7 +1160,7 @@
       .filter-btn { font-size: 0.75rem; padding: 0.5rem 0.5rem; }
       .card-name { font-size: 0.88rem; }
       .hero-chip { letter-spacing: 0.18em; }
-      .header-site-badge { font-size: 0.56rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; }
+      .header-logo { width: 148px; }
     }
 
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
@@ -1656,7 +1659,34 @@
 
 <header>
   <div class="header-inner">
-    <span class="header-site-badge">APEX LEGENDS 大会情報 2026</span>
+    <div class="header-logo">
+      <svg viewBox="0 0 680 155" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+        <defs>
+          <linearGradient id="gold-hdr" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#f5d576"/>
+            <stop offset="50%" stop-color="#d4af37"/>
+            <stop offset="100%" stop-color="#a67c00"/>
+          </linearGradient>
+          <linearGradient id="red-hdr" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ff2d3f"/>
+            <stop offset="100%" stop-color="#a3000d"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="680" height="155" fill="#0a0a0a"/>
+        <rect x="44" y="30" width="5" height="95" fill="url(#red-hdr)"/>
+        <rect x="631" y="30" width="5" height="95" fill="url(#red-hdr)"/>
+        <rect x="60" y="24" width="560" height="2" fill="url(#red-hdr)"/>
+        <rect x="60" y="130" width="560" height="2" fill="url(#red-hdr)"/>
+        <polygon points="60,24 88,24 88,26 61.5,26 61.5,44 60,44" fill="url(#red-hdr)"/>
+        <polygon points="620,24 592,24 592,26 618.5,26 618.5,44 620,44" fill="url(#red-hdr)"/>
+        <polygon points="60,132 88,132 88,130 61.5,130 61.5,112 60,112" fill="url(#red-hdr)"/>
+        <polygon points="620,132 592,132 592,130 618.5,130 618.5,112 620,112" fill="url(#red-hdr)"/>
+        <text x="340" y="54" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="17" font-weight="700" fill="#fff" letter-spacing="0.4em">ALLEN LOVERSON <tspan fill="url(#gold-hdr)">PRESENTS</tspan></text>
+        <line x1="200" y1="65" x2="480" y2="65" stroke="url(#gold-hdr)" stroke-width="1" opacity="0.7"/>
+        <text x="340" y="97" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="27" font-weight="900" fill="#fff" letter-spacing="0.05em">APEX LEGENDS<tspan fill="url(#red-hdr)"> TOURNAMENT</tspan></text>
+        <text x="340" y="122" text-anchor="middle" font-family="'Arial Black', sans-serif" font-size="18" font-weight="900" fill="#fff" letter-spacing="0.4em">YEAR 6</text>
+      </svg>
+    </div>
     <nav id="main-nav">
       <button class="nav-btn active" data-section="tournaments" onclick="showSection('tournaments')">大会一覧</button>
       <button class="nav-btn" data-section="calendar"    onclick="showSection('calendar')">カレンダー</button>
