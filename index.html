@@ -1555,105 +1555,92 @@
     }
 
     /* === Split 1 Playoffs 詳細セクション === */
-    .tournaments-layout {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
-    .playoffs-detail {
-      flex: 0 0 360px;
-      min-width: 0;
-    }
-    .tournaments-main {
-      flex: 1;
-      min-width: 0;
-    }
-    @media (max-width: 900px) {
-      .tournaments-layout { flex-direction: column; }
-      .playoffs-detail { flex: 1 1 auto; width: 100%; }
-    }
-
-    .playoffs-detail-header .section-title { font-size: 0.95rem; }
     .playoffs-badge-paris {
       background: linear-gradient(135deg, var(--accent-gold), #c98a00);
       color: #1a1a1a;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 800;
       padding: 0.15rem 0.5rem;
       border-radius: 2px;
       letter-spacing: 0.04em;
     }
 
-    .playoffs-block { margin-bottom: 1.5rem; }
+    .playoffs-block { margin-bottom: 1.75rem; }
     .playoffs-block-title {
-      font-size: 0.75rem; font-weight: 800;
+      font-size: 0.8rem; font-weight: 800;
       letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--accent-red);
       border-left: 3px solid var(--accent-red);
-      padding-left: 0.55rem; margin-bottom: 0.7rem;
+      padding-left: 0.6rem; margin-bottom: 0.9rem;
     }
 
     .playoffs-overview-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
     }
     .playoffs-overview-item {
       background: var(--bg-card); border: 1px solid var(--border);
-      border-top: 2px solid var(--accent-red); border-radius: 5px;
-      padding: 0.55rem 0.7rem;
+      border-top: 3px solid var(--accent-red); border-radius: 5px;
+      padding: 0.75rem 0.9rem;
     }
-    .playoffs-overview-wide { grid-column: 1 / -1; }
     .playoffs-overview-label {
-      font-size: 0.62rem; color: var(--text-muted);
+      font-size: 0.65rem; color: var(--text-muted);
       letter-spacing: 0.08em; text-transform: uppercase;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
     .playoffs-overview-value {
-      font-size: 0.85rem; font-weight: 700;
-      color: var(--text-primary); line-height: 1.35;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text-primary); line-height: 1.4;
       display: flex; flex-direction: column;
     }
     .playoffs-overview-sub {
-      font-size: 0.7rem; font-weight: 500;
-      color: var(--text-secondary); margin-top: 0.15rem;
+      font-size: 0.72rem; font-weight: 500;
+      color: var(--text-secondary); margin-top: 0.2rem;
     }
     .playoffs-overview-prize { color: var(--accent-gold); }
     .playoffs-note {
-      font-size: 0.7rem; color: var(--text-muted);
-      margin-top: 0.6rem; line-height: 1.5;
+      font-size: 0.72rem; color: var(--text-muted);
+      margin-top: 0.7rem; line-height: 1.5;
     }
 
     .playoffs-stages {
-      display: flex; flex-direction: column; gap: 0.7rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    @media (max-width: 720px) {
+      .playoffs-stages { grid-template-columns: 1fr; }
     }
     .playoffs-stage {
-      display: flex; gap: 0.7rem;
+      display: flex; gap: 0.75rem;
       background: var(--bg-card); border: 1px solid var(--border);
       border-left: 3px solid var(--accent-red); border-radius: 4px;
-      padding: 0.6rem 0.75rem;
+      padding: 0.75rem 0.85rem;
     }
     .playoffs-stage-num {
-      flex: 0 0 26px; height: 26px;
+      flex: 0 0 28px; height: 28px;
       background: var(--accent-red); color: #fff;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; font-weight: 900;
+      font-size: 0.9rem; font-weight: 900;
     }
     .playoffs-stage-body { flex: 1; min-width: 0; }
     .playoffs-stage-name {
-      font-size: 0.85rem; font-weight: 800;
-      color: var(--accent-gold); margin-bottom: 0.25rem;
+      font-size: 0.9rem; font-weight: 800;
+      color: var(--accent-gold); margin-bottom: 0.3rem;
     }
     .playoffs-stage-desc {
-      font-size: 0.72rem; color: var(--text-secondary);
-      line-height: 1.5; margin-bottom: 0.4rem;
+      font-size: 0.75rem; color: var(--text-secondary);
+      line-height: 1.55; margin-bottom: 0.5rem;
     }
     .playoffs-stage-result {
-      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      display: flex; flex-direction: column; gap: 0.3rem;
     }
     .playoffs-stage-result-pill {
-      font-size: 0.65rem; font-weight: 700;
-      padding: 0.18rem 0.45rem; border-radius: 3px;
-      letter-spacing: 0.02em;
+      font-size: 0.68rem; font-weight: 700;
+      padding: 0.22rem 0.5rem; border-radius: 3px;
+      letter-spacing: 0.02em; text-align: center;
     }
     .pill-go {
       background: rgba(91,168,94,0.18); color: var(--accent-green);
@@ -1674,22 +1661,24 @@
 
     .playoffs-slots-list {
       list-style: none; margin: 0; padding: 0;
-      display: flex; flex-direction: column; gap: 0.35rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0.5rem;
     }
     .playoffs-slots-list li {
       display: grid;
       grid-template-columns: 1fr auto;
       grid-template-areas: "region count" "detail detail";
-      gap: 0.1rem 0.5rem;
+      gap: 0.2rem 0.5rem;
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 4px; padding: 0.5rem 0.7rem;
+      border-radius: 4px; padding: 0.6rem 0.8rem;
     }
     .playoffs-slot-region {
-      grid-area: region; font-size: 0.82rem; font-weight: 700;
+      grid-area: region; font-size: 0.85rem; font-weight: 700;
       color: var(--text-primary);
     }
     .playoffs-slot-count {
-      grid-area: count; font-size: 0.95rem; font-weight: 900;
+      grid-area: count; font-size: 1rem; font-weight: 900;
       color: var(--accent-red); letter-spacing: 0.02em;
     }
     .playoffs-slot-count::after {
@@ -1697,7 +1686,7 @@
       color: var(--text-muted); margin-left: 0.15rem;
     }
     .playoffs-slot-detail {
-      grid-area: detail; font-size: 0.7rem; color: var(--text-secondary);
+      grid-area: detail; font-size: 0.72rem; color: var(--text-secondary);
     }
     .playoffs-slot-highlight {
       border-left: 3px solid var(--accent-gold);
@@ -1861,6 +1850,7 @@
       <p class="header-tagline">ALGS（Apex Legends Global Series）の最新スケジュール・賞金・配信情報をお届けします。プロリーグ APAC Northの試合日程から、世界大会（パリ・ラスベガス・札幌）まで、ALGSの全大会情報を一覧でご確認いただけます。</p>
       <nav id="main-nav">
         <button class="nav-btn active" data-section="tournaments" onclick="showSection('tournaments')">大会一覧</button>
+        <button class="nav-btn" data-section="playoffs" onclick="showSection('playoffs')">Split 1 Playoffs</button>
         <button class="nav-btn" data-section="calendar"    onclick="showSection('calendar')">カレンダー</button>
         <button class="nav-btn" data-section="players"     onclick="showSection('players')">選手情報</button>
         <button class="nav-btn" data-section="teams"       onclick="showSection('teams')">チーム情報</button>
@@ -1880,6 +1870,7 @@
 <div class="mobile-nav-overlay" id="mobile-nav-overlay">
   <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="閉じる">✕</button>
   <button class="nav-btn active" data-section="tournaments" onclick="showSection('tournaments')">大会一覧</button>
+  <button class="nav-btn" data-section="playoffs" onclick="showSection('playoffs')">Split 1 Playoffs</button>
   <button class="nav-btn" data-section="calendar"    onclick="showSection('calendar')">カレンダー</button>
   <button class="nav-btn" data-section="players"     onclick="showSection('players')">選手情報</button>
   <button class="nav-btn" data-section="teams"       onclick="showSection('teams')">チーム情報</button>
@@ -1909,109 +1900,6 @@
 
   <!-- 大会一覧 -->
   <section id="section-tournaments" aria-label="APEX LEGENDS 大会一覧">
-    <div class="tournaments-layout">
-
-      <aside class="playoffs-detail">
-        <div class="section-header playoffs-detail-header">
-          <h2 class="section-title">Split 1 Playoffs 詳細</h2>
-          <span class="badge playoffs-badge-paris">PARIS · 7月</span>
-        </div>
-
-        <div class="playoffs-block">
-          <div class="playoffs-block-title">開催概要</div>
-          <div class="playoffs-overview-grid">
-            <div class="playoffs-overview-item">
-              <div class="playoffs-overview-label">会期</div>
-              <div class="playoffs-overview-value">2026/7/7 〜 7/11</div>
-            </div>
-            <div class="playoffs-overview-item">
-              <div class="playoffs-overview-label">出場</div>
-              <div class="playoffs-overview-value">40 チーム</div>
-            </div>
-            <div class="playoffs-overview-item playoffs-overview-wide">
-              <div class="playoffs-overview-label">会場</div>
-              <div class="playoffs-overview-value">Paris Expo Porte de Versailles<span class="playoffs-overview-sub">パリ・フランス</span></div>
-            </div>
-            <div class="playoffs-overview-item playoffs-overview-wide">
-              <div class="playoffs-overview-label">賞金</div>
-              <div class="playoffs-overview-value playoffs-overview-prize">$2,000,000<span class="playoffs-overview-sub">約 ¥320,000,000</span></div>
-            </div>
-          </div>
-          <p class="playoffs-note">Esports World Cup 2026 の一部として開催。当初リヤド予定がパリへ会場変更。</p>
-        </div>
-
-        <div class="playoffs-block">
-          <div class="playoffs-block-title">競技フォーマット</div>
-          <div class="playoffs-stages">
-            <div class="playoffs-stage">
-              <div class="playoffs-stage-num">1</div>
-              <div class="playoffs-stage-body">
-                <div class="playoffs-stage-name">グループステージ</div>
-                <div class="playoffs-stage-desc">40チームを10チーム×4グループに分け、各グループが他3グループと対戦するラウンドロビン形式。1チーム3マッチシリーズ＝18ゲーム。</div>
-                <div class="playoffs-stage-result">
-                  <span class="playoffs-stage-result-pill pill-go">上位14 → ファイナル直行</span>
-                  <span class="playoffs-stage-result-pill pill-survive">15〜34位 → サバイバー</span>
-                  <span class="playoffs-stage-result-pill pill-out">下位6 → 敗退</span>
-                </div>
-              </div>
-            </div>
-            <div class="playoffs-stage">
-              <div class="playoffs-stage-num">2</div>
-              <div class="playoffs-stage-body">
-                <div class="playoffs-stage-name">サバイバーステージ</div>
-                <div class="playoffs-stage-desc">グループステージ15〜34位の20チームによる敗者復活ラウンド。</div>
-                <div class="playoffs-stage-result">
-                  <span class="playoffs-stage-result-pill pill-go">上位6 → ファイナル進出</span>
-                </div>
-              </div>
-            </div>
-            <div class="playoffs-stage">
-              <div class="playoffs-stage-num">3</div>
-              <div class="playoffs-stage-body">
-                <div class="playoffs-stage-name">ファイナル</div>
-                <div class="playoffs-stage-desc">合計20チーム（直行14 ＋ サバイバー勝ち上がり6）によるマッチポイント形式。</div>
-                <div class="playoffs-stage-result">
-                  <span class="playoffs-stage-result-pill pill-win">累計50pt到達 → 1位獲得で優勝</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="playoffs-block">
-          <div class="playoffs-block-title">地域別出場枠（合計40）</div>
-          <ul class="playoffs-slots-list">
-            <li>
-              <span class="playoffs-slot-region">Americas</span>
-              <span class="playoffs-slot-count">13</span>
-              <span class="playoffs-slot-detail">優勝1 ＋ ポイント順12</span>
-            </li>
-            <li>
-              <span class="playoffs-slot-region">EMEA</span>
-              <span class="playoffs-slot-count">9</span>
-              <span class="playoffs-slot-detail">優勝1 ＋ ポイント順8</span>
-            </li>
-            <li class="playoffs-slot-highlight">
-              <span class="playoffs-slot-region">APAC North 🇯🇵</span>
-              <span class="playoffs-slot-count">9</span>
-              <span class="playoffs-slot-detail">優勝1 ＋ ポイント順8</span>
-            </li>
-            <li>
-              <span class="playoffs-slot-region">APAC South</span>
-              <span class="playoffs-slot-count">8</span>
-              <span class="playoffs-slot-detail">優勝1 ＋ ポイント順7</span>
-            </li>
-            <li class="playoffs-slot-bonus">
-              <span class="playoffs-slot-region">招待枠</span>
-              <span class="playoffs-slot-count">1</span>
-              <span class="playoffs-slot-detail">Year 5 EWC 王者の特別枠</span>
-            </li>
-          </ul>
-          <p class="playoffs-note">出場確定40チームの一覧は、各地域 Pro League 終了後に追加予定。</p>
-        </div>
-      </aside>
-
-      <div class="tournaments-main">
     <div class="section-header">
       <h2 class="section-title">APEX LEGENDS 大会一覧</h2>
       <span class="badge live-pulse">LIVE 3件</span>
@@ -2043,8 +1931,106 @@
       </div>
       <div id="yt-streams-grid"></div>
     </div>
-      </div>
+  </section>
 
+  <!-- Split 1 Playoffs 詳細 -->
+  <section id="section-playoffs" class="hidden" aria-label="ALGS Year 6 Split 1 Playoffs 詳細">
+    <div class="section-header">
+      <h2 class="section-title">ALGS Year 6 Split 1 Playoffs 詳細</h2>
+      <span class="badge playoffs-badge-paris">PARIS · 2026/7</span>
+    </div>
+
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">開催概要</div>
+      <div class="playoffs-overview-grid">
+        <div class="playoffs-overview-item">
+          <div class="playoffs-overview-label">会期</div>
+          <div class="playoffs-overview-value">2026/7/7 〜 7/11</div>
+        </div>
+        <div class="playoffs-overview-item">
+          <div class="playoffs-overview-label">出場</div>
+          <div class="playoffs-overview-value">40 チーム</div>
+        </div>
+        <div class="playoffs-overview-item">
+          <div class="playoffs-overview-label">会場</div>
+          <div class="playoffs-overview-value">Paris Expo Porte de Versailles<span class="playoffs-overview-sub">パリ・フランス</span></div>
+        </div>
+        <div class="playoffs-overview-item">
+          <div class="playoffs-overview-label">賞金</div>
+          <div class="playoffs-overview-value playoffs-overview-prize">$2,000,000<span class="playoffs-overview-sub">約 ¥320,000,000</span></div>
+        </div>
+      </div>
+      <p class="playoffs-note">Esports World Cup 2026 の一部として開催。当初リヤド予定がパリへ会場変更。</p>
+    </div>
+
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">競技フォーマット</div>
+      <div class="playoffs-stages">
+        <div class="playoffs-stage">
+          <div class="playoffs-stage-num">1</div>
+          <div class="playoffs-stage-body">
+            <div class="playoffs-stage-name">グループステージ</div>
+            <div class="playoffs-stage-desc">40チームを10チーム×4グループに分け、各グループが他3グループと対戦するラウンドロビン形式。1チーム3マッチシリーズ＝18ゲーム。</div>
+            <div class="playoffs-stage-result">
+              <span class="playoffs-stage-result-pill pill-go">上位14 → ファイナル直行</span>
+              <span class="playoffs-stage-result-pill pill-survive">15〜34位 → サバイバー</span>
+              <span class="playoffs-stage-result-pill pill-out">下位6 → 敗退</span>
+            </div>
+          </div>
+        </div>
+        <div class="playoffs-stage">
+          <div class="playoffs-stage-num">2</div>
+          <div class="playoffs-stage-body">
+            <div class="playoffs-stage-name">サバイバーステージ</div>
+            <div class="playoffs-stage-desc">グループステージ15〜34位の20チームによる敗者復活ラウンド。</div>
+            <div class="playoffs-stage-result">
+              <span class="playoffs-stage-result-pill pill-go">上位6 → ファイナル進出</span>
+            </div>
+          </div>
+        </div>
+        <div class="playoffs-stage">
+          <div class="playoffs-stage-num">3</div>
+          <div class="playoffs-stage-body">
+            <div class="playoffs-stage-name">ファイナル</div>
+            <div class="playoffs-stage-desc">合計20チーム（直行14 ＋ サバイバー勝ち上がり6）によるマッチポイント形式。</div>
+            <div class="playoffs-stage-result">
+              <span class="playoffs-stage-result-pill pill-win">累計50pt到達 → 1位獲得で優勝</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">地域別出場枠（合計40）</div>
+      <ul class="playoffs-slots-list">
+        <li>
+          <span class="playoffs-slot-region">Americas</span>
+          <span class="playoffs-slot-count">13</span>
+          <span class="playoffs-slot-detail">優勝1 ＋ ポイント順12</span>
+        </li>
+        <li>
+          <span class="playoffs-slot-region">EMEA</span>
+          <span class="playoffs-slot-count">9</span>
+          <span class="playoffs-slot-detail">優勝1 ＋ ポイント順8</span>
+        </li>
+        <li class="playoffs-slot-highlight">
+          <span class="playoffs-slot-region">APAC North 🇯🇵</span>
+          <span class="playoffs-slot-count">9</span>
+          <span class="playoffs-slot-detail">優勝1 ＋ ポイント順8</span>
+        </li>
+        <li>
+          <span class="playoffs-slot-region">APAC South</span>
+          <span class="playoffs-slot-count">8</span>
+          <span class="playoffs-slot-detail">優勝1 ＋ ポイント順7</span>
+        </li>
+        <li class="playoffs-slot-bonus">
+          <span class="playoffs-slot-region">招待枠</span>
+          <span class="playoffs-slot-count">1</span>
+          <span class="playoffs-slot-detail">Year 5 EWC 王者の特別枠</span>
+        </li>
+      </ul>
+      <p class="playoffs-note">出場確定40チームの一覧は、各地域 Pro League 終了後に追加予定。</p>
     </div>
   </section>
 
@@ -4717,7 +4703,7 @@ function filterTournaments(filter,btn){
   renderTournaments(filter);
 }
 
-const ALL_SECTIONS=['tournaments','calendar','players','teams','standings','maps','rules'];
+const ALL_SECTIONS=['tournaments','playoffs','calendar','players','teams','standings','maps','rules'];
 const IFRAME_URLS={
   players:'https://liquipedia.net/apexlegends/Portal:Players/APAC_North'
 };
