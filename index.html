@@ -1697,6 +1697,216 @@
       opacity: 0.85;
     }
 
+    /* === Split 1 Playoffs 追加詳細ブロック === */
+    .playoffs-block-intro {
+      font-size: 0.78rem; color: var(--text-secondary);
+      line-height: 1.65; margin: 0 0 0.9rem;
+    }
+    .playoffs-block-intro strong { color: var(--accent-gold); }
+
+    /* 4. 使用マップ */
+    .playoffs-maps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.7rem;
+    }
+    .playoffs-map-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-gold);
+      border-radius: 5px;
+      padding: 0.75rem 0.9rem;
+    }
+    .playoffs-map-name {
+      font-size: 0.95rem; font-weight: 800;
+      color: var(--accent-gold); margin-bottom: 0.1rem;
+    }
+    .playoffs-map-ja {
+      font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.4rem;
+    }
+    .playoffs-map-desc {
+      font-size: 0.72rem; color: var(--text-secondary); line-height: 1.55;
+    }
+
+    /* 5. ポイント計算 */
+    .playoffs-point-types {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.7rem; margin-bottom: 1rem;
+    }
+    @media (max-width: 520px) {
+      .playoffs-point-types { grid-template-columns: 1fr; }
+    }
+    .playoffs-point-type {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-top: 3px solid var(--accent-red); border-radius: 5px;
+      padding: 0.8rem 0.9rem; text-align: center;
+    }
+    .playoffs-point-type-icon { font-size: 1.5rem; margin-bottom: 0.2rem; }
+    .playoffs-point-type-name {
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 0.2rem;
+    }
+    .playoffs-point-type-value {
+      font-size: 1.2rem; font-weight: 900;
+      color: var(--accent-red); margin-bottom: 0.2rem;
+    }
+    .playoffs-point-type-desc {
+      font-size: 0.7rem; color: var(--text-secondary); line-height: 1.4;
+    }
+    .playoffs-rank-table-wrap { overflow-x: auto; }
+    .playoffs-rank-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.78rem; min-width: 280px;
+    }
+    .playoffs-rank-table th {
+      background: rgba(232,0,29,0.15); color: var(--accent-red);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+      padding: 0.45rem 0.7rem; text-align: left;
+      border-bottom: 1px solid var(--border-accent);
+    }
+    .playoffs-rank-table td {
+      padding: 0.4rem 0.7rem; border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .playoffs-rank-table td:nth-child(2),
+    .playoffs-rank-table td:nth-child(4) {
+      font-weight: 800; color: var(--accent-gold);
+    }
+    .playoffs-rank-table tr:last-child td { border-bottom: none; }
+
+    /* 6. マッチポイント形式 */
+    .playoffs-highlight {
+      background: rgba(232,0,29,0.08);
+      border: 1px solid rgba(232,0,29,0.35);
+      border-radius: 6px; padding: 0.9rem 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .playoffs-highlight-step {
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .playoffs-highlight-step-num {
+      flex: 0 0 32px; height: 32px;
+      background: var(--accent-red); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; font-weight: 900;
+    }
+    .playoffs-highlight-step-text {
+      flex: 1; font-size: 0.85rem;
+      color: var(--text-primary); line-height: 1.5;
+    }
+    .playoffs-highlight-step-text strong { color: var(--accent-red); }
+    .playoffs-highlight-arrow {
+      text-align: center; color: var(--accent-red);
+      font-size: 1.1rem; margin: 0.4rem 0; padding-left: 1rem;
+    }
+
+    /* 7. POIドラフト & レジェンドBAN */
+    .playoffs-dual-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
+    }
+    @media (max-width: 720px) {
+      .playoffs-dual-grid { grid-template-columns: 1fr; }
+    }
+    .playoffs-dual-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-top: 3px solid var(--accent-gold); border-radius: 5px;
+      padding: 0.9rem 1rem;
+    }
+    .playoffs-dual-icon { font-size: 1.6rem; margin-bottom: 0.3rem; }
+    .playoffs-dual-title {
+      font-size: 0.95rem; font-weight: 800;
+      color: var(--accent-gold); margin-bottom: 0.5rem;
+    }
+    .playoffs-dual-desc {
+      font-size: 0.78rem; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 0.6rem;
+    }
+    .playoffs-dual-desc strong { color: var(--accent-red); }
+    .playoffs-dual-points {
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .playoffs-dual-points span {
+      font-size: 0.7rem; color: var(--text-muted); line-height: 1.4;
+    }
+
+    /* 8. 賞金分配 */
+    .playoffs-prize-table-wrap { overflow-x: auto; }
+    .playoffs-prize-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.78rem; min-width: 360px;
+    }
+    .playoffs-prize-table th {
+      background: rgba(232,0,29,0.15); color: var(--accent-red);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+      padding: 0.5rem 0.75rem; text-align: left;
+      border-bottom: 1px solid var(--border-accent);
+    }
+    .playoffs-prize-table td {
+      padding: 0.38rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .playoffs-prize-table td:nth-child(2) {
+      font-weight: 700; color: var(--accent-gold);
+    }
+    .playoffs-prize-table td:nth-child(3) {
+      font-size: 0.72rem; color: var(--text-secondary);
+    }
+    .playoffs-prize-table tr.prize-rank-1 td { background: rgba(232,160,0,0.14); }
+    .playoffs-prize-table tr.prize-rank-2 td { background: rgba(232,160,0,0.09); }
+    .playoffs-prize-table tr.prize-rank-3 td { background: rgba(232,160,0,0.05); }
+    .playoffs-prize-table tr:last-child td { border-bottom: none; }
+
+    /* 9. Championship Points への影響 */
+    .playoffs-cp-path {
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .playoffs-cp-step {
+      display: flex; gap: 0.75rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-red); border-radius: 4px;
+      padding: 0.75rem 0.85rem;
+    }
+    .playoffs-cp-step-num {
+      flex: 0 0 30px; height: 30px;
+      background: var(--accent-red); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; font-weight: 900;
+    }
+    .playoffs-cp-step-body { flex: 1; min-width: 0; }
+    .playoffs-cp-step-name {
+      font-size: 0.85rem; font-weight: 800;
+      color: var(--accent-gold); margin-bottom: 0.3rem;
+    }
+    .playoffs-cp-step-desc {
+      font-size: 0.75rem; color: var(--text-secondary); line-height: 1.6;
+    }
+    .playoffs-cp-step-desc strong { color: var(--accent-red); }
+
+    /* 10. 観戦・配信 */
+    .playoffs-stream-channels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.6rem; margin-bottom: 0.5rem;
+    }
+    .playoffs-stream-channel {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 5px; padding: 0.65rem 0.85rem;
+    }
+    .playoffs-stream-flag { font-size: 1.4rem; flex-shrink: 0; }
+    .playoffs-stream-info { flex: 1; min-width: 0; }
+    .playoffs-stream-name {
+      font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.15rem;
+    }
+    .playoffs-stream-link {
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--accent-red); text-decoration: none; word-break: break-all;
+    }
+    .playoffs-stream-link:hover { text-decoration: underline; }
+
     /* ══════════════════════════════════════════════
        フッターキャラ帯
     ══════════════════════════════════════════════ */
@@ -2031,6 +2241,223 @@
         </li>
       </ul>
       <p class="playoffs-note">出場確定40チームの一覧は、各地域 Pro League 終了後に追加予定。</p>
+    </div>
+
+    <!-- 4. 使用マップ -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">使用マップ</div>
+      <p class="playoffs-block-intro">Year 6 Split 1 Playoffs では以下の4マップが使用されます。各試合でマップが変わり、それぞれ異なる戦略が求められます。</p>
+      <div class="playoffs-maps-grid">
+        <div class="playoffs-map-card">
+          <div class="playoffs-map-name">World's Edge</div>
+          <div class="playoffs-map-ja">ワールズエッジ</div>
+          <div class="playoffs-map-desc">第3シーズン登場のクラシックマップ。溶岩エリアと氷河地形が入り組み、ロングレンジ戦が頻発。</div>
+        </div>
+        <div class="playoffs-map-card">
+          <div class="playoffs-map-name">Storm Point</div>
+          <div class="playoffs-map-ja">ストームポイント</div>
+          <div class="playoffs-map-desc">第11シーズン登場の最大級マップ。海岸・密林・山岳の多様な地形で、回転戦略が重要に。</div>
+        </div>
+        <div class="playoffs-map-card">
+          <div class="playoffs-map-name">E-District</div>
+          <div class="playoffs-map-ja">Eディストリクト</div>
+          <div class="playoffs-map-desc">第22シーズン登場の都市型マップ。高密度な街区と立体構造で、近距離戦闘の比重が高い。</div>
+        </div>
+        <div class="playoffs-map-card">
+          <div class="playoffs-map-name">Olympus</div>
+          <div class="playoffs-map-ja">オリンポス</div>
+          <div class="playoffs-map-desc">第7シーズン登場の浮遊都市マップ。フェーズトンネルやパフローダーなど独自のローテーション要素。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. ポイント計算 -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">ポイント計算</div>
+      <p class="playoffs-block-intro">各試合のスコアは「順位ポイント ＋ キルポイント」の合計で決まります。これがシリーズを通して累積され、最終順位が確定します。</p>
+      <div class="playoffs-point-types">
+        <div class="playoffs-point-type">
+          <div class="playoffs-point-type-icon">🎯</div>
+          <div class="playoffs-point-type-name">キルポイント</div>
+          <div class="playoffs-point-type-value">1キル = 1pt</div>
+          <div class="playoffs-point-type-desc">倒した敵1人につき1ポイント加算。上限なし</div>
+        </div>
+        <div class="playoffs-point-type">
+          <div class="playoffs-point-type-icon">🏆</div>
+          <div class="playoffs-point-type-name">順位ポイント</div>
+          <div class="playoffs-point-type-value">最大 12pt</div>
+          <div class="playoffs-point-type-desc">試合終了時の生存順位に応じて加算</div>
+        </div>
+      </div>
+      <div class="playoffs-rank-table-wrap">
+        <table class="playoffs-rank-table">
+          <thead>
+            <tr><th>順位</th><th>pt</th><th>順位</th><th>pt</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>🥇 1位</td><td>12</td><td>7位</td><td>4</td></tr>
+            <tr><td>🥈 2位</td><td>9</td><td>8〜10位</td><td>3</td></tr>
+            <tr><td>🥉 3位</td><td>7</td><td>11〜15位</td><td>2</td></tr>
+            <tr><td>4〜6位</td><td>5</td><td>16〜20位</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6. マッチポイント形式 -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">マッチポイント形式（ファイナル）</div>
+      <p class="playoffs-block-intro">Playoffsのファイナルは20チームによる「マッチポイント形式」で優勝が決まります。最後の1試合に向けて緊張が極まる、ALGS最大の見せ場です。</p>
+      <div class="playoffs-highlight">
+        <div class="playoffs-highlight-step">
+          <div class="playoffs-highlight-step-num">①</div>
+          <div class="playoffs-highlight-step-text">累計 <strong>50pt</strong> に到達 → 「マッチポイント」資格を獲得</div>
+        </div>
+        <div class="playoffs-highlight-arrow">▼</div>
+        <div class="playoffs-highlight-step">
+          <div class="playoffs-highlight-step-num">②</div>
+          <div class="playoffs-highlight-step-text">マッチポイント保有中に <strong>チャンピオン（1位）</strong> を獲得 → 優勝！</div>
+        </div>
+      </div>
+      <ul class="rules-list">
+        <li>複数チームが同時にマッチポイント資格を保有することがある</li>
+        <li>最終5〜6試合目にかけて <strong>大逆転劇</strong> が起こりやすい緊張の展開</li>
+        <li>同点時の判定順：① 単試合最高スコア　② 最高順位　③ 合計キル数</li>
+        <li><strong>実例</strong>：Year 5 EWC Midseason Playoffs（2025年7月）では <strong>VK Gaming</strong> がこの形式で優勝</li>
+      </ul>
+    </div>
+
+    <!-- 7. POIドラフト & レジェンドBAN -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">POIドラフト & レジェンドBAN</div>
+      <p class="playoffs-block-intro">ALGS独自の2大要素。試合の戦略性と多様性を生み出す核心ルールで、Playoffsでも全試合で適用されます。</p>
+      <div class="playoffs-dual-grid">
+        <div class="playoffs-dual-card">
+          <div class="playoffs-dual-icon">📍</div>
+          <div class="playoffs-dual-title">POIドラフト</div>
+          <div class="playoffs-dual-desc">試合前に各チームが順番に <strong>着陸地点（POI）</strong> を指名する仕組み。強ポジを巡る駆け引きが事前段階から始まり、戦略の幅を大きく広げる。</div>
+          <div class="playoffs-dual-points">
+            <span>• 同一POIに2チームが落ちることはない</span>
+            <span>• 前シーズンの成績がドラフト順に影響</span>
+            <span>• 強ポジを取れるか・代替を考えるかが勝負を分ける</span>
+          </div>
+        </div>
+        <div class="playoffs-dual-card">
+          <div class="playoffs-dual-icon">🚫</div>
+          <div class="playoffs-dual-title">レジェンドBAN</div>
+          <div class="playoffs-dual-desc">各試合後、<strong>最も多くピックされたレジェンド</strong>がそのシリーズで使用禁止に。強キャラ固定を防ぎ、メタの多様性を促進する Year 5 から導入のルール。</div>
+          <div class="playoffs-dual-points">
+            <span>• 試合ごとにBAN対象が増えていく</span>
+            <span>• Pro League / Playoffs / Championship 全てで適用</span>
+            <span>• チームのレジェンド対応力が試される</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 賞金分配 -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">賞金分配（Year 5 EWC Midseason 参考）</div>
+      <p class="playoffs-block-intro">Year 6 Split 1 Playoffs（$2,000,000）の正式な順位別分配はまだ発表されていません。同額の <strong>Year 5 EWC Midseason Playoffs（$2,000,000）</strong> の実績を参考として全40位掲載します。</p>
+      <div class="playoffs-prize-table-wrap">
+        <table class="playoffs-prize-table">
+          <thead>
+            <tr><th>順位</th><th>賞金（USD）</th><th>日本円換算</th></tr>
+          </thead>
+          <tbody>
+            <tr class="prize-rank-1"><td>🥇 1位</td><td>$600,000</td><td>約9,600万円</td></tr>
+            <tr class="prize-rank-2"><td>🥈 2位</td><td>$300,000</td><td>約4,800万円</td></tr>
+            <tr class="prize-rank-3"><td>🥉 3位</td><td>$175,000</td><td>約2,800万円</td></tr>
+            <tr><td>4位</td><td>$150,000</td><td>約2,400万円</td></tr>
+            <tr><td>5位</td><td>$125,000</td><td>約2,000万円</td></tr>
+            <tr><td>6位</td><td>$90,000</td><td>約1,440万円</td></tr>
+            <tr><td>7位</td><td>$75,000</td><td>約1,200万円</td></tr>
+            <tr><td>8位</td><td>$60,000</td><td>約960万円</td></tr>
+            <tr><td>9〜10位</td><td>$50,000</td><td>約800万円</td></tr>
+            <tr><td>11〜12位</td><td>$30,000</td><td>約480万円</td></tr>
+            <tr><td>13位</td><td>$24,000</td><td>約384万円</td></tr>
+            <tr><td>14位</td><td>$22,000</td><td>約352万円</td></tr>
+            <tr><td>15〜16位</td><td>$20,000</td><td>約320万円</td></tr>
+            <tr><td>17位</td><td>$16,000</td><td>約256万円</td></tr>
+            <tr><td>18位</td><td>$14,000</td><td>約224万円</td></tr>
+            <tr><td>19〜21位</td><td>$10,000</td><td>約160万円</td></tr>
+            <tr><td>22位</td><td>$8,000</td><td>約128万円</td></tr>
+            <tr><td>23位</td><td>$7,500</td><td>約120万円</td></tr>
+            <tr><td>24位</td><td>$7,000</td><td>約112万円</td></tr>
+            <tr><td>25位</td><td>$6,500</td><td>約104万円</td></tr>
+            <tr><td>26位</td><td>$6,000</td><td>約96万円</td></tr>
+            <tr><td>27位</td><td>$5,750</td><td>約92万円</td></tr>
+            <tr><td>28位</td><td>$5,500</td><td>約88万円</td></tr>
+            <tr><td>29位</td><td>$5,250</td><td>約84万円</td></tr>
+            <tr><td>30位</td><td>$5,000</td><td>約80万円</td></tr>
+            <tr><td>31〜32位</td><td>$4,750</td><td>約76万円</td></tr>
+            <tr><td>33〜34位</td><td>$4,250</td><td>約68万円</td></tr>
+            <tr><td>35〜36位</td><td>$3,750</td><td>約60万円</td></tr>
+            <tr><td>37〜38位</td><td>$3,250</td><td>約52万円</td></tr>
+            <tr><td>39〜40位</td><td>$3,000</td><td>約48万円</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="playoffs-note">出典: esportsearnings.com（ALGS 2025 Midseason Playoffs）。一部空席順位は前後の値から推定補完。1ドル=160円換算。</p>
+    </div>
+
+    <!-- 9. Championship Pointsへの影響 -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">Championship Pointsへの影響</div>
+      <p class="playoffs-block-intro">Playoffsの成績は、シーズン終盤に札幌で開催される <strong>Year 6 Championship</strong> の出場権獲得に直結します。</p>
+      <div class="playoffs-cp-path">
+        <div class="playoffs-cp-step">
+          <div class="playoffs-cp-step-num">1</div>
+          <div class="playoffs-cp-step-body">
+            <div class="playoffs-cp-step-name">CP獲得経路</div>
+            <div class="playoffs-cp-step-desc">Pro League Split 1・Split 2、Split 1・Split 2 Playoffsの成績に応じて <strong>Championship Points（CP）</strong> が付与される。<strong>PlayoffsのほうがPro Leagueより配点が大きく</strong>、国際大会での結果が決定的な意味を持つ。</div>
+          </div>
+        </div>
+        <div class="playoffs-cp-step">
+          <div class="playoffs-cp-step-num">2</div>
+          <div class="playoffs-cp-step-body">
+            <div class="playoffs-cp-step-name">出場枠の振り分け</div>
+            <div class="playoffs-cp-step-desc">Championship出場40枠のうち、<strong>32枠</strong> がシーズン累計CP上位、残り <strong>8枠</strong> が11月開催の Last Chance Qualifier（LCQ）で配分される。</div>
+          </div>
+        </div>
+        <div class="playoffs-cp-step">
+          <div class="playoffs-cp-step-num">3</div>
+          <div class="playoffs-cp-step-body">
+            <div class="playoffs-cp-step-name">Split 1 Playoffs の意義</div>
+            <div class="playoffs-cp-step-desc">シーズン序盤の大量CP獲得チャンス。ここで好成績を残せばSplit 2 Playoffs進出と札幌への道が一気に開ける。同時に <strong>Split 2 Playoffsの地域別出場枠</strong> 配分にも影響する。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. 観戦・配信スケジュール -->
+    <div class="playoffs-block">
+      <div class="playoffs-block-title">観戦・配信スケジュール</div>
+      <p class="playoffs-block-intro">会期：<strong>2026年7月7日(火)〜7月11日(土)</strong>（フランス時間）。パリと日本は <strong>7時間差</strong>（パリ19:00 ＝ 日本翌02:00）。</p>
+      <div class="playoffs-stream-channels">
+        <div class="playoffs-stream-channel">
+          <div class="playoffs-stream-flag">🇯🇵</div>
+          <div class="playoffs-stream-info">
+            <div class="playoffs-stream-name">日本語実況（APAC North公式）</div>
+            <a href="https://www.twitch.tv/esports_rage" target="_blank" rel="noopener" class="playoffs-stream-link">twitch.tv/esports_rage</a>
+          </div>
+        </div>
+        <div class="playoffs-stream-channel">
+          <div class="playoffs-stream-flag">🌏</div>
+          <div class="playoffs-stream-info">
+            <div class="playoffs-stream-name">英語実況（ALGS公式）</div>
+            <a href="https://www.twitch.tv/playapex" target="_blank" rel="noopener" class="playoffs-stream-link">twitch.tv/playapex</a>
+          </div>
+        </div>
+        <div class="playoffs-stream-channel">
+          <div class="playoffs-stream-flag">▶️</div>
+          <div class="playoffs-stream-info">
+            <div class="playoffs-stream-name">YouTube公式チャンネル</div>
+            <a href="https://www.youtube.com/@ApexLegendsEsports" target="_blank" rel="noopener" class="playoffs-stream-link">@ApexLegendsEsports</a>
+          </div>
+        </div>
+      </div>
+      <p class="playoffs-note">日本時間の試合開始時刻は公式スケジュール発表後に追記予定。Twitchドロップ（限定アイテム配布）も実施予定。</p>
     </div>
   </section>
 
